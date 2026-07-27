@@ -1,37 +1,473 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>South Austin</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>South Austin Real Estate | 78745 &amp; 78748 Homes | Michael Mechler, Douglas Elliman</title>
+<meta name="description" content="A local's guide to Cherry Creek, Garrison Park, Westgate, South Manchaca, Shady Hollow, Olympic Heights and the rest of true South Austin — plus real help buying or selling here. Call or text Michael Mechler, Douglas Elliman.">
+<link rel="canonical" href="https://www.southaustin.com/">
 
-    html,
-    body {
-      margin: 0;
-      min-height: 100%;
-      background: #f7f2e8;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="South Austin Real Estate | Michael Mechler, Douglas Elliman">
+<meta property="og:description" content="The Austin people keep saying is gone? It's still down here. A neighborhood-level guide to buying and selling in 78745 and 78748.">
+<meta property="og:url" content="https://www.southaustin.com/">
+<meta property="og:site_name" content="South Austin">
 
-    body {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 32px;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 
-    img {
-      display: block;
-      width: min(520px, 82vw);
-      height: auto;
+<!-- Structured data: Real Estate Agent -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Michael Mechler",
+  "url": "https://www.southaustin.com/",
+  "telephone": "+1-512-937-2696",
+  "email": "mechler@atxrealestate.com",
+  "areaServed": [
+    {"@type": "PostalAddressRange", "name": "78745"},
+    {"@type": "PostalAddressRange", "name": "78748"}
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Austin",
+    "addressRegion": "TX",
+    "addressCountry": "US"
+  },
+  "worksFor": {
+    "@type": "RealEstateAgent",
+    "name": "Douglas Elliman Real Estate"
+  }
+}
+</script>
+<!-- Structured data: FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What counts as South Austin on this site?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "78745, 78748, and the sliver of 78749 east of MoPac. Not 78704, not Zilker or Bouldin Creek, not Circle C."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is my South Austin home worth right now?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on your street, not just your ZIP code. Call or text Michael Mechler for a neighborhood-specific pricing opinion."
+      }
     }
-  </style>
+  ]
+}
+</script>
 </head>
 <body>
-  <img src="south-austin-logo.png" alt="South Austin" />
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Douglas Elliman Real Estate &middot; Austin, TX</span>
+    <span>Licensed Texas Real Estate Broker</span>
+  </div>
+</div>
+
+<nav class="nav" id="siteNav">
+  <div class="wrap">
+    <a href="/" class="nav__brand"><span class="mark">&#9679;</span> South Austin</a>
+    <div class="nav__links">
+      <a href="#neighborhoods">Neighborhoods</a>
+      <a href="#homes">Homes</a>
+      <a href="#sell">Sell</a>
+      <a href="#guide">Guide</a>
+      <a href="#about">About</a>
+    </div>
+    <div class="nav__cta">
+      <a href="tel:+15129372696" class="nav__phone"><span class="nav__phone-text">(512) YES-2-OWN</span></a>
+      <a href="sms:+15129372696" class="btn btn--primary btn--small">Text Michael</a>
+    </div>
+    <button class="nav__burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#neighborhoods">Neighborhoods</a>
+    <a href="#homes">Homes</a>
+    <a href="#sell">Sell</a>
+    <a href="#guide">Guide</a>
+    <a href="#about">About</a>
+    <a href="tel:+15129372696">Call (512) YES-2-OWN</a>
+  </div>
+</nav>
+
+<!-- ============ HERO / MASTHEAD ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div data-reveal>
+      <span class="hero__vol">South Austin &middot; Vol. I &middot; 78745 / 78748</span>
+      <h1>The Austin people keep saying is gone?<br><span class="accent">It's still down here.</span></h1>
+      <p class="hero__sub">South of Ben White. East of MoPac. Mature oak trees, screened porches, and neighbors who still wave from the yard. This is 78745 and 78748 &mdash; the South Austin that's still mostly houses. I'm Michael Mechler, and I help people buy and sell here.</p>
+      <div class="hero__ctas">
+        <a href="sms:+15129372696" class="btn btn--primary">Talk About Your Move</a>
+        <a href="#neighborhoods" class="btn btn--ghost">Explore South Austin</a>
+      </div>
+      <a href="#sell" class="hero__tertiary">Thinking about selling instead? Start here &rarr;</a>
+    </div>
+
+    <div class="toc" data-reveal>
+      <span class="toc__label">In This Issue</span>
+      <ol>
+        <li><a href="#nc-cherry-creek">Cherry Creek</a></li>
+        <li><a href="#nc-garrison-park">Garrison Park</a></li>
+        <li><a href="#nc-westgate">Westgate</a></li>
+        <li><a href="#nc-south-manchaca">South Manchaca</a></li>
+        <li><a href="#nc-shady-hollow">Shady Hollow</a></li>
+        <li><a href="#nc-olympic-heights">Olympic Heights</a></li>
+        <li><a href="#guide">The South Austin Taco Map</a></li>
+        <li><a href="#sell">What Your Home Is Worth Right Now</a></li>
+      </ol>
+    </div>
+  </div>
+</header>
+
+<!-- ============ IDENTITY ============ -->
+<section class="section" id="identity">
+  <div class="wrap">
+    <div class="identity__grid">
+      <div data-reveal>
+        <span class="eyebrow">What We Mean By South Austin</span>
+        <h2 style="font-size:clamp(1.9rem,3vw,2.6rem); line-height:1.1; margin-bottom:0.6em;">Not a scene. Not a skyline view. Just a really good zip code.</h2>
+        <p>When this site says South Austin, it means 78745 and 78748 &mdash; plus the eastern edge of 78749, on the Austin side of MoPac. It does not mean 78704. It does not mean Zilker, Bouldin Creek, or Travis Heights, and it isn't Circle C either. Those are good places, and they get plenty of attention already. This is the other South Austin: the one that's still mostly single-story houses on quarter-acre lots, not listings with a skyline view.</p>
+        <p>It's close enough to downtown to matter &mdash; MoPac, I-35, and Ben White all get you there in one merge &mdash; and far enough out that you can still find a house with no HOA, a carport somebody turned into a studio, and oak trees older than the street sign. Nobody here is trying to convince you it's cool. It just works, and it has for a long time.</p>
+      </div>
+      <div data-reveal>
+        <p class="identity__pull">It's not a scene. It's a zip code that never <span class="accent">needed</span> to be one.</p>
+        <p style="margin-top:1.2em;">People end up here for the same handful of reasons: a yard big enough for a dog and a garden, a commute that doesn't run through downtown to get downtown, and a street where the houses don't all look like they were built the same week. Some are here for one of those. Most stay for all three.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEIGHBORHOODS ============ -->
+<section class="section section--dim" id="neighborhoods">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Find Your South Austin</span>
+      <h2>Six neighborhoods, six different reasons to live here.</h2>
+      <p>Browse by what you actually want out of the next few years &mdash; not just by ZIP code.</p>
+    </div>
+
+    <div class="filters" id="filterBar" data-reveal>
+      <button class="filter-pill is-active" data-filter="all">All Neighborhoods</button>
+      <button class="filter-pill" data-filter="trees">Mature Trees, No HOA</button>
+      <button class="filter-pill" data-filter="family">Family &amp; Amenities</button>
+      <button class="filter-pill" data-filter="value">Best Value</button>
+      <button class="filter-pill" data-filter="food">Walkable-ish &amp; Food-Forward</button>
+      <button class="filter-pill" data-filter="first">First-Time Buyer Friendly</button>
+    </div>
+
+    <div class="card-grid" id="neighborhoodGrid">
+
+      <article class="n-card" id="nc-cherry-creek" data-tags="trees value" data-reveal>
+        <span class="n-card__zip">78745</span>
+        <h3>Cherry Creek</h3>
+        <p class="n-card__feel">Established and unhurried &mdash; wide streets, mature shade, and a mix of original ranch homes next to thoughtful remodels. Large stretches carry no HOA at all.</p>
+        <div class="n-card__tags"><span>No HOA</span><span>Mid-Century</span><span>Mature Trees</span></div>
+        <div class="n-card__facts">Runs from Slaughter Lane to Stassney along <strong>Westgate Blvd</strong>, between Brodie Lane and Manchaca Road. Near Mary Moore Searight Park, Dick Nichols District Park, and Grey Rock Golf Club. Best for buyers who want space and flexibility over HOA polish.</div>
+        <div class="n-card__actions">
+          <a href="cherry-creek.html" class="btn--link">Full guide &rarr;</a>
+          <a href="sms:+15129372696?body=Hi%20Michael%2C%20I%27d%20like%20to%20talk%20about%20Cherry%20Creek." class="btn btn--ghost btn--small">Text about Cherry Creek</a>
+        </div>
+      </article>
+
+      <article class="n-card" id="nc-garrison-park" data-tags="first food" data-reveal>
+        <span class="n-card__zip">78745</span>
+        <h3>Garrison Park</h3>
+        <p class="n-card__feel">Reads more "local routine" than "destination district" &mdash; the kind of place where you know your coffee order and your neighbor's dog's name.</p>
+        <div class="n-card__tags"><span>First-Time Friendly</span><span>Walkable Errands</span></div>
+        <div class="n-card__facts">Zoned to Crockett HS. Coffee runs to <strong>Jo's Coffee</strong> or Summer Moon, groceries at Sprouts, and regulars at Pinthouse Pizza and Bender Bar &amp; Grill. Weekday-practical, weekend-easy.</div>
+        <div class="n-card__actions">
+          <a href="sms:+15129372696?body=Hi%20Michael%2C%20I%27d%20like%20to%20talk%20about%20Garrison%20Park." class="btn btn--ghost btn--small">Text about Garrison Park</a>
+        </div>
+      </article>
+
+      <article class="n-card" id="nc-westgate" data-tags="trees value" data-reveal>
+        <span class="n-card__zip">78745</span>
+        <h3>Westgate</h3>
+        <p class="n-card__feel">Bordered by Ben White to the north and Garrison Park to the south, Westgate sits close enough to South Lamar's energy without living inside it.</p>
+        <div class="n-card__tags"><span>Established</span><span>Central-ish</span></div>
+        <div class="n-card__facts">A mix of single-story ranch homes and duplexes, largely built before the recent wave of infill. Quick reach to South Lamar and 290 without the price tag that comes with either.</div>
+        <div class="n-card__actions">
+          <a href="sms:+15129372696?body=Hi%20Michael%2C%20I%27d%20like%20to%20talk%20about%20Westgate." class="btn btn--ghost btn--small">Text about Westgate</a>
+        </div>
+      </article>
+
+      <article class="n-card" id="nc-south-manchaca" data-tags="food first" data-reveal>
+        <span class="n-card__zip">78745 / 78748</span>
+        <h3>South Manchaca</h3>
+        <p class="n-card__feel">The corridor itself &mdash; if you want to be a five-minute drive from dinner most nights, this is the one.</p>
+        <div class="n-card__tags"><span>Food-Forward</span><span>Corridor Living</span></div>
+        <div class="n-card__facts">Home turf for The Little Darlin', Fig Italian Kitchen &amp; Bar, Bee Dumpling, Tuk Tuk Thai Caf&eacute;, and El Perrito, all within a short drive of each other on or near Manchaca Road.</div>
+        <div class="n-card__actions">
+          <a href="sms:+15129372696?body=Hi%20Michael%2C%20I%27d%20like%20to%20talk%20about%20South%20Manchaca." class="btn btn--ghost btn--small">Text about South Manchaca</a>
+        </div>
+      </article>
+
+      <article class="n-card" id="nc-shady-hollow" data-tags="family" data-reveal>
+        <span class="n-card__zip">78748</span>
+        <h3>Shady Hollow</h3>
+        <p class="n-card__feel">Lush, tree-lined, and genuinely close-knit &mdash; a community center, pool, tennis courts, and two nature trails come with the address.</p>
+        <div class="n-card__tags"><span>Family Amenities</span><span>Roomy Lots</span></div>
+        <div class="n-card__facts">Late-20th-century homes, 3 to 6 bedrooms, on wide, shaded lots. Near the Lady Bird Johnson Wildflower Center and Shady Hollow Village Shopping Center. A Mom's Club and kids' swim team come standard.</div>
+        <div class="n-card__actions">
+          <a href="sms:+15129372696?body=Hi%20Michael%2C%20I%27d%20like%20to%20talk%20about%20Shady%20Hollow." class="btn btn--ghost btn--small">Text about Shady Hollow</a>
+        </div>
+      </article>
+
+      <article class="n-card" id="nc-olympic-heights" data-tags="family value first" data-reveal>
+        <span class="n-card__zip">78748</span>
+        <h3>Olympic Heights</h3>
+        <p class="n-card__feel">Friendly and well-kept, with the amenities of pricier neighbors close by, minus the premium that comes with the Shady Hollow address.</p>
+        <div class="n-card__tags"><span>Turnkey Value</span><span>HOA Amenities</span></div>
+        <div class="n-card__facts">Built out by D.R. Horton between 2002 and 2012. Tree-lined streets, a community pool, a dog park, and an HOA that actually organizes things. A practical entry point into 78748.</div>
+        <div class="n-card__actions">
+          <a href="sms:+15129372696?body=Hi%20Michael%2C%20I%27d%20like%20to%20talk%20about%20Olympic%20Heights." class="btn btn--ghost btn--small">Text about Olympic Heights</a>
+        </div>
+      </article>
+
+    </div>
+
+    <p style="margin-top:var(--sp-5); font-size:0.92rem; color:var(--ink-soft);">
+      Also on our radar: <strong>Western Trails</strong>, <strong>Battle Bend</strong>, <strong>Buckingham Estates</strong>, <strong>Maple Run</strong>, and <strong>Grand Oaks</strong> &mdash; guides for these are next up. <a href="sms:+15129372696?body=Hi%20Michael%2C%20can%20you%20tell%20me%20about%20a%20South%20Austin%20neighborhood%20not%20listed%20on%20the%20site%3F" class="btn--link">Ask about one now &rarr;</a>
+    </p>
+  </div>
+</section>
+
+<!-- ============ HOMES ============ -->
+<section class="section" id="homes">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Homes &amp; Real Estate</span>
+      <h2>However you want to search, start here.</h2>
+      <p>Live inventory connects directly to the Austin MLS &mdash; the pathways below are ready for that feed.</p>
+    </div>
+    <div class="tile-grid" data-reveal>
+      <div class="tile"><span class="tile__count">MLS Feed &middot; Live</span><h4>New Listings</h4><p>Everything that's hit the market in 78745 and 78748 this week.</p></div>
+      <div class="tile"><span class="tile__count">MLS Feed &middot; Live</span><h4>Large Yards</h4><p>Quarter-acre-plus lots for gardens, dogs, and room to breathe.</p></div>
+      <div class="tile"><span class="tile__count">MLS Feed &middot; Live</span><h4>Mid-Century Homes</h4><p>Original ranch homes with real bones, updated or not.</p></div>
+      <div class="tile"><span class="tile__count">MLS Feed &middot; Live</span><h4>Homes With Pools</h4><p>Because Austin summers are Austin summers.</p></div>
+      <div class="tile"><span class="tile__count">MLS Feed &middot; Live</span><h4>Condos &amp; Townhomes</h4><p>Lower-maintenance options without leaving South Austin.</p></div>
+      <div class="tile"><span class="tile__count">MLS Feed &middot; Live</span><h4>Investment Properties</h4><p>Duplexes and rentable single-family homes, evaluated honestly.</p></div>
+      <div class="tile"><span class="tile__count">MLS Feed &middot; Live</span><h4>Coming Soon</h4><p>Off-market and pre-list opportunities before they hit Zillow.</p></div>
+      <div class="tile"><span class="tile__count">MLS Feed &middot; Live</span><h4>Recently Sold</h4><p>A real read on what's actually closing, street by street.</p></div>
+    </div>
+    <div style="margin-top:var(--sp-4); padding:var(--sp-3); background:var(--limestone); border-radius:var(--radius); font-size:0.88rem; color:var(--ink-soft); border:1px dashed var(--line);">
+      <strong>Build note:</strong> each tile above is a marked slot for the live MLS/IDX feed (grid or map view). Until that's connected, "View Homes" should route to a call or text rather than a broken search.
+    </div>
+  </div>
+</section>
+
+<!-- ============ SELL ============ -->
+<section class="section section--oak" id="sell">
+  <div class="wrap">
+    <div class="sell__grid">
+      <div data-reveal>
+        <span class="eyebrow">Selling In South Austin</span>
+        <h2 style="font-size:clamp(1.9rem,3vw,2.6rem); line-height:1.1; margin-bottom:0.6em;">Selling here, honestly.</h2>
+        <p>Austin's market has cooled from its 2022 peak, and more than half of active listings have taken at least one price cut this year. That's not a reason to panic &mdash; it's a reason to price correctly the first time. In a market like this, the home that's priced right on day one is the home that sells; the home that isn't sits, gets stale, and ends up selling for less anyway.</p>
+        <p>South Austin adds its own wrinkles: no two houses on the same street look alike, additions and converted garages aren't always permitted the same way, and buyers are comparing your 1975 ranch against brand-new builds in Buda and Kyle. Pricing an older South Austin home takes more than pulling three comps &mdash; it takes knowing which updates actually move the number and which just feel like they should.</p>
+        <div class="stat-strip">
+          <div class="stat"><b>54%+</b><span>of active Austin listings have taken a price cut this year</span></div>
+          <div class="stat"><b>~60&ndash;70</b><span>average days on market across the metro right now</span></div>
+        </div>
+        <div class="hero__ctas">
+          <a href="sms:+15129372696?body=Hi%20Michael%2C%20what%20could%20my%20South%20Austin%20home%20sell%20for%3F" class="btn btn--on-oak">What Could My Home Sell For?</a>
+          <a href="tel:+15129372696" class="btn btn--ghost" style="border-color:var(--paper); color:var(--paper);">Let's Talk About Your Home</a>
+        </div>
+      </div>
+      <div data-reveal>
+        <span class="toc__label" style="color:#D9D3C0; border-color:rgba(242,236,221,0.25);">What We'll Actually Talk Through</span>
+        <ul class="sell__list">
+          <li>How neighborhood-level demand affects your price</li>
+          <li>Updating before listing vs. selling as-is</li>
+          <li>Which renovations tend to pay for themselves here</li>
+          <li>Positioning an older or unusual floor plan well</li>
+          <li>Mature trees, lot size, and how buyers value them</li>
+          <li>Converted garages, additions, and permitting questions</li>
+          <li>Competing against new construction nearby</li>
+          <li>How buyers actually judge condition vs. location</li>
+          <li>Timing your sale around your next move</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GUIDE ============ -->
+<section class="section section--dim" id="guide">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">The South Austin Guide</span>
+      <h2>Where South Austin actually spends its time.</h2>
+      <p>Not the ten most Instagrammed spots in Austin &mdash; the places people around here actually go back to.</p>
+    </div>
+    <div class="guide-grid">
+      <article class="g-card" data-reveal>
+        <div class="g-card__photo">Photo: Jo's Coffee, Menchaca Rd</div>
+        <div class="g-card__body">
+          <h4>A Nearly Perfect Saturday in South Austin</h4>
+          <p>Coffee at Jo's on Menchaca, a slow lap of the trails at Mary Moore Searight, then a patio table at The Little Darlin' before the heat sets in.</p>
+        </div>
+      </article>
+      <article class="g-card" data-reveal>
+        <div class="g-card__photo">Photo: taco plate, South Manchaca</div>
+        <div class="g-card__body">
+          <h4>The South Austin Taco Map</h4>
+          <p>El Perrito and the truck parks along Menchaca and South 1st do the heavy lifting &mdash; no valet, no wait for a table.</p>
+        </div>
+      </article>
+      <article class="g-card" data-reveal>
+        <div class="g-card__photo">Photo: backyard patio, oak trees</div>
+        <div class="g-card__body">
+          <h4>Patios Worth Leaving The House For</h4>
+          <p>The Little Darlin's dog-friendly backyard, The Hive's garden, and Bouldin Acres &ndash; Menchaca's pickleball courts and smokehouse trailer.</p>
+        </div>
+      </article>
+      <article class="g-card" data-reveal>
+        <div class="g-card__photo">Photo: dog on a trail</div>
+        <div class="g-card__body">
+          <h4>South Austin With A Dog</h4>
+          <p>Mary Moore Searight's trails, Garrison Park's open space, and a standing table at The Little Darlin' for the patio crowd.</p>
+        </div>
+      </article>
+      <article class="g-card" data-reveal>
+        <div class="g-card__photo">Photo: dinner table, Manchaca corridor</div>
+        <div class="g-card__body">
+          <h4>Where South Austin Actually Eats</h4>
+          <p>Fig Italian Kitchen &amp; Bar, Bee Dumpling, Tuk Tuk Thai Caf&eacute;, and Mission Burger &mdash; the regulars, not the reservations.</p>
+        </div>
+      </article>
+      <article class="g-card" data-reveal>
+        <div class="g-card__photo">Photo: Alamo Drafthouse, Slaughter Ln</div>
+        <div class="g-card__body">
+          <h4>Living Here Without Driving North</h4>
+          <p>Central Market and H-E-B for groceries, Alamo Drafthouse on Slaughter Lane for a movie, South Park Meadows for everything else.</p>
+        </div>
+      </article>
+    </div>
+    <p style="margin-top:var(--sp-4); font-size:0.82rem; color:var(--ink-soft);">Business names and hours change &mdash; verify current details before this section goes live.</p>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="about__grid">
+      <div data-reveal>
+        <div class="about__photo">Photo: Michael Mechler,<br>on-location in South Austin</div>
+      </div>
+      <div data-reveal>
+        <span class="eyebrow">About Michael</span>
+        <h2 style="font-size:clamp(1.9rem,3vw,2.6rem); margin-bottom:0.5em;">A broker who lives in the details, not just the listings.</h2>
+        <p>I'm Michael Mechler, a Broker Associate with Douglas Elliman Real Estate here in Austin. I've been licensed in Texas since 2013 and hold a Texas broker's license since 2020, and I spend most of that time in one part of the city: the South Austin that doesn't show up in the glossy features.</p>
+        <p>That means I can tell you why a house on Westgate Blvd will move faster than one two streets over, what a converted garage does to your appraisal, and which South Manchaca patio to suggest when a client's parents are in town. I work alongside a partner as part of a small team, backed by the resources of Douglas Elliman &mdash; so you get a local's attention with a major brokerage behind it.</p>
+        <div class="about__badge">Douglas Elliman Real Estate &middot; Licensed Texas Broker</div>
+        <div class="hero__ctas" style="margin-top:var(--sp-4);">
+          <a href="tel:+15129372696" class="btn btn--primary">Call (512) YES-2-OWN</a>
+          <a href="sms:+15129372696" class="btn btn--ghost">Text Michael</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section section--dim">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">What Clients Say</span>
+      <h2>Real stories, organized by what people actually needed.</h2>
+    </div>
+    <div class="t-grid">
+      <div class="t-card" data-reveal><span class="t-card__need">Moving Into South Austin</span><p>[Client testimonial placeholder &mdash; replace with a real quote before launch.]</p><p class="t-card__name">&mdash; Client name, neighborhood</p></div>
+      <div class="t-card" data-reveal><span class="t-card__need">Selling An Older Home</span><p>[Client testimonial placeholder &mdash; replace with a real quote before launch.]</p><p class="t-card__name">&mdash; Client name, neighborhood</p></div>
+      <div class="t-card" data-reveal><span class="t-card__need">Relocating To Austin</span><p>[Client testimonial placeholder &mdash; replace with a real quote before launch.]</p><p class="t-card__name">&mdash; Client name, neighborhood</p></div>
+      <div class="t-card" data-reveal><span class="t-card__need">Navigating A Competitive Purchase</span><p>[Client testimonial placeholder &mdash; replace with a real quote before launch.]</p><p class="t-card__name">&mdash; Client name, neighborhood</p></div>
+      <div class="t-card" data-reveal><span class="t-card__need">Buying An Investment Property</span><p>[Client testimonial placeholder &mdash; replace with a real quote before launch.]</p><p class="t-card__name">&mdash; Client name, neighborhood</p></div>
+      <div class="t-card" data-reveal><span class="t-card__need">Coordinating A Sale And Purchase</span><p>[Client testimonial placeholder &mdash; replace with a real quote before launch.]</p><p class="t-card__name">&mdash; Client name, neighborhood</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="closing" data-reveal>
+  <div class="wrap">
+    <h2>Find where you belong. Then let's talk about it.</h2>
+    <p>No pressure, no pop-up, no form to fill out first. Just call or text, and we'll figure out what South Austin looks like for you &mdash; whether that's buying your first house here or finally listing the one you've outgrown.</p>
+    <div class="hero__ctas">
+      <a href="tel:+15129372696" class="btn btn--primary">Call (512) YES-2-OWN</a>
+      <a href="sms:+15129372696" class="btn btn--ghost">Text Michael</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <div class="foot__brand">South Austin</div>
+        <p style="max-width:34ch;">A local's guide to 78745 and 78748, built by Michael Mechler, Broker Associate at Douglas Elliman Real Estate.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#neighborhoods">Neighborhoods</a></li>
+          <li><a href="#homes">Homes</a></li>
+          <li><a href="#sell">Sell</a></li>
+          <li><a href="#guide">Guide</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:+15129372696">(512) YES-2-OWN</a></li>
+          <li><a href="sms:+15129372696">Text Michael</a></li>
+          <li><a href="mailto:mechler@atxrealestate.com">mechler@atxrealestate.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Brokerage</h5>
+        <ul>
+          <li>Douglas Elliman Real Estate</li>
+          <li>Austin, TX</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__legal">
+      <span>&copy; 2026 South Austin. Michael Mechler, Broker Associate, Douglas Elliman Real Estate. Equal Housing Opportunity.</span>
+      <span>
+        <a href="https://atxrealestate.com/information-about-brokerage-services.pdf">Information About Brokerage Services</a>
+        &nbsp;&middot;&nbsp;
+        <a href="https://atxrealestate.com/consumer-protection-notice.pdf">Consumer Protection Notice</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-bar">
+  <a href="tel:+15129372696">Call</a>
+  <a href="sms:+15129372696">Text</a>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
