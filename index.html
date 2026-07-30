@@ -585,29 +585,30 @@
       letter-spacing: .08em;
       text-transform: uppercase;
     }
-    .local-guide-logos {
+    .local-guide-text-links {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 1rem 1.35rem;
+      gap: .65rem;
     }
-    .local-guide-logo-link {
+    .local-guide-text-links a {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      opacity: .82;
-      transition: opacity .2s ease, transform .2s ease;
+      min-height: 42px;
+      padding: .65rem .9rem;
+      border: 1px solid rgba(255,253,248,.3);
+      border-radius: 999px;
+      color: var(--white);
+      text-decoration: none;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+      transition: background .2s ease, border-color .2s ease, transform .2s ease;
     }
-    .local-guide-logo-link:hover {
-      opacity: 1;
+    .local-guide-text-links a:hover {
+      background: rgba(255,253,248,.1);
+      border-color: rgba(255,253,248,.65);
       transform: translateY(-2px);
-    }
-    .local-guide-logo {
-      display: block;
-      width: auto;
-      height: 54px;
-      max-width: 195px;
-      object-fit: contain;
     }
     .spotlight-poster {
       position: relative;
@@ -773,14 +774,22 @@
     .about-name-label {
       position: absolute;
       z-index: 3;
-      left: 12%;
-      right: 12%;
-      bottom: 11%;
+      left: 10%;
+      bottom: 10%;
+      display: inline-block;
+      padding: .72rem .82rem .68rem;
       color: var(--white);
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: .16em;
+      background: rgba(17, 24, 19, .86);
+      border-left: 3px solid var(--sun);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .22);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      font-size: clamp(.68rem, 1vw, .78rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: .14em;
       text-transform: uppercase;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, .45);
     }
     .about-copy h2 { margin: 0 0 1.2rem; font-family: var(--serif); font-size: clamp(3.2rem, 6vw, 6rem); font-weight: 400; line-height: .9; }
     .about-copy p { max-width: 590px; color: var(--muted); }
@@ -797,60 +806,74 @@
     .about-meta strong { font-size: .85rem; }
 
     .site-footer {
-      padding: 3rem clamp(1.2rem, 5vw, 6.5rem) 7rem;
+      padding: clamp(3.5rem, 6vw, 6rem) clamp(1.2rem, 5vw, 6.5rem) 7rem;
       background: var(--ink);
       color: var(--paper);
     }
-    .footer-top {
+    .footer-main {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(380px, .85fr);
-      gap: clamp(2rem, 5vw, 5rem);
-      padding-bottom: 2.5rem;
-      border-bottom: 1px solid rgba(255,255,255,.18);
-    }
-    .footer-title { margin: 0; font-family: var(--serif); font-size: clamp(3rem, 7vw, 6.5rem); font-weight: 400; line-height: .85; }
-    .footer-links {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(180px, 1fr));
-      gap: .8rem 1.5rem;
-      align-content: end;
-    }
-    .footer-links a { color: rgba(255,255,255,.8); text-decoration: none; font-size: .82rem; }
-    .footer-links a:hover { color: white; text-decoration: underline; }
-    .footer-bottom {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 1.5rem 3rem;
-      margin-top: 1.5rem;
-      padding-top: 1.6rem;
-      color: var(--paper);
-      font-size: .68rem;
+      grid-template-columns: minmax(230px, 1.25fr) repeat(3, minmax(150px, .65fr));
+      gap: clamp(2rem, 4vw, 5rem);
+      align-items: start;
+      padding-bottom: clamp(2.5rem, 5vw, 4rem);
     }
     .footer-brand {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: .9rem;
+      display: grid;
+      gap: 1.25rem;
+      align-content: start;
     }
     .footer-logo-link {
       display: inline-flex;
-      width: min(255px, 100%);
+      width: min(245px, 100%);
     }
     .footer-logo {
       width: 100%;
       height: auto;
       object-fit: contain;
     }
-    .footer-meta {
-      display: grid;
-      grid-template-columns: repeat(2, max-content);
-      gap: .28rem 1.5rem;
-      justify-content: end;
-      text-align: right;
+    .footer-brand-copy {
+      max-width: 330px;
+      margin: 0;
+      color: rgba(255,255,255,.62);
+      font-size: .84rem;
+      line-height: 1.65;
     }
-    .footer-meta p { margin: 0; }
+    .footer-group h3 {
+      margin: .15rem 0 1rem;
+      color: rgba(255,255,255,.5);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .footer-group nav {
+      display: grid;
+      gap: .78rem;
+    }
+    .footer-group a {
+      width: fit-content;
+      color: rgba(255,255,255,.86);
+      text-decoration: none;
+      font-size: .84rem;
+      line-height: 1.35;
+    }
+    .footer-group a:hover {
+      color: white;
+      text-decoration: underline;
+      text-underline-offset: .25em;
+    }
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .8rem 2rem;
+      padding-top: 1.35rem;
+      border-top: 1px solid rgba(255,255,255,.16);
+      color: rgba(255,255,255,.56);
+      font-size: .7rem;
+      line-height: 1.6;
+    }
+    .footer-bottom p { margin: 0; }
 
     .mobile-actions { display: none; }
 
@@ -872,13 +895,11 @@
       .home-type:nth-child(-n+2) { border-bottom: 1px solid rgba(27,24,21,.25); }
     }
 
-    @media (max-width: 900px) {
-      .footer-top {
-        grid-template-columns: 1fr;
-      }
-      .footer-links {
+    @media (max-width: 980px) {
+      .footer-main {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+      .footer-brand { grid-column: 1 / -1; }
     }
 
     @media (max-width: 760px) {
@@ -963,16 +984,11 @@
       .home-type:last-child { border-bottom: 0; }
       .contact-panel { min-height: 550px; }
       .about-section { grid-template-columns: 1fr; }
-      .footer-top { grid-template-columns: 1fr; }
-      .footer-links { grid-template-columns: 1fr; }
+      .footer-main { grid-template-columns: 1fr; gap: 2.2rem; }
+      .footer-brand { grid-column: auto; }
       .footer-bottom { flex-direction: column; align-items: flex-start; }
-      .footer-meta {
-        grid-template-columns: 1fr;
-        justify-content: start;
-        text-align: left;
-      }
       .local-guide-links { align-items: flex-start; }
-      .local-guide-logo { height: 48px; max-width: 170px; }
+      .about-name-label { left: 8%; bottom: 8%; font-size: .68rem; }
       .mobile-actions {
         position: fixed;
         z-index: 120;
@@ -1252,13 +1268,9 @@
           </div>
           <div class="local-guide-links">
             <span>Explore more Austin</span>
-            <div class="local-guide-logos">
-              <a class="local-guide-logo-link" href="https://atxfood.com/" target="_blank" rel="noopener" aria-label="Visit ATXFood.com">
-                <img class="local-guide-logo" src="assets/atx-food.png" alt="ATX Food">
-              </a>
-              <a class="local-guide-logo-link" href="https://atxdrinks.com/" target="_blank" rel="noopener" aria-label="Visit ATXDrinks.com">
-                <img class="local-guide-logo" src="assets/atx-drinks.png" alt="ATX Drinks">
-              </a>
+            <div class="local-guide-text-links">
+              <a href="https://atxfood.com/" target="_blank" rel="noopener">ATXFood.com</a>
+              <a href="https://atxdrinks.com/" target="_blank" rel="noopener">ATXDrinks.com</a>
             </div>
           </div>
         </div>
@@ -1303,7 +1315,7 @@
     <section class="section about-section" id="about" aria-labelledby="about-title">
       <div class="about-name">
         <img class="about-portrait" src="assets/michael-mechler.png" alt="Michael Mechler, Broker Associate">
-        <span class="about-name-label">Your local point of contact</span>
+        <span class="about-name-label">Local point<br>of contact</span>
       </div>
       <div class="about-copy">
         <span class="section-kicker">About Michael</span>
@@ -1321,29 +1333,44 @@
   </main>
 
   <footer class="site-footer">
-    <div class="footer-top">
-      <h2 class="footer-title">Find your<br>South Austin.</h2>
-      <div class="footer-links">
-        <a href="tel:+15129372696">Call (512) YES-2-OWN</a>
-        <a href="sms:+15129372696?body=Hi%20Michael%20%E2%80%94%20I%E2%80%99m%20on%20SouthAustin.com%20and%20want%20to%20learn%20more%20about%20South%20Austin.">Text a Human</a>
-        <a href="#neighborhoods">Neighborhoods</a>
-        <a href="#featured-business">Featured Business</a>
-        <a href="https://southaustin.com/information-about-brokerage-services.pdf" target="_blank" rel="noopener">Information About Brokerage Services</a>
-        <a href="https://southaustin.com/consumer-protection-notice.pdf" target="_blank" rel="noopener">Consumer Protection Notice</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
+    <div class="footer-main">
       <div class="footer-brand">
         <a class="footer-logo-link" href="https://www.elliman.com/" target="_blank" rel="noopener" aria-label="Douglas Elliman Real Estate">
           <img class="footer-logo" src="assets/douglas-elliman-white.png" alt="Douglas Elliman Real Estate">
         </a>
+        <p class="footer-brand-copy">A local guide to South Austin neighborhoods, homes and the places that make this side of town feel like home.</p>
       </div>
-      <div class="footer-meta">
-        <p>Michael Mechler, Broker Associate</p>
-        <p>Douglas Elliman Real Estate</p>
-        <p>Equal Housing Opportunity</p>
-        <p>© <span id="current-year">2026</span></p>
+
+      <div class="footer-group">
+        <h3>Explore</h3>
+        <nav aria-label="Footer explore navigation">
+          <a href="#neighborhoods">Neighborhoods</a>
+          <a href="#life">Local Life</a>
+          <a href="#featured-business">Featured Business</a>
+          <a href="#homes">Homes</a>
+        </nav>
       </div>
+
+      <div class="footer-group">
+        <h3>Contact</h3>
+        <nav aria-label="Footer contact links">
+          <a href="tel:+15129372696">Call (512) YES-2-OWN</a>
+          <a href="sms:+15129372696?body=Hi%20Michael%20%E2%80%94%20I%E2%80%99m%20on%20SouthAustin.com%20and%20want%20to%20learn%20more%20about%20South%20Austin.">Text a Human</a>
+        </nav>
+      </div>
+
+      <div class="footer-group">
+        <h3>Required Notices</h3>
+        <nav aria-label="Required real estate notices">
+          <a href="https://southaustin.com/information-about-brokerage-services.pdf" target="_blank" rel="noopener">Information About Brokerage Services</a>
+          <a href="https://southaustin.com/consumer-protection-notice.pdf" target="_blank" rel="noopener">Consumer Protection Notice</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>Michael Mechler, Broker Associate · Douglas Elliman Real Estate · Equal Housing Opportunity</p>
+      <p>© <span id="current-year">2026</span> SouthAustin.com</p>
     </div>
   </footer>
 
