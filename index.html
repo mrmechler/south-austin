@@ -1,1506 +1,1055 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#10100f" />
-  <meta
-    name="description"
-    content="Discover homes, neighborhoods, and your next move in South Austin with local real estate broker Michael Mechler."
-  />
-  <title>SouthAustin.com | Find Your Place</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
-    rel="stylesheet"
-  />
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>South Austin Neighborhood Guide | SouthAustin.com</title>
+  <meta name="description" content="Explore South Austin neighborhoods, parks, homes and everyday local life. Call or text a real Austin real estate professional—no contact form required.">
+  <meta name="theme-color" content="#f3eee5">
+  <meta property="og:title" content="South Austin — Find the part that feels like yours">
+  <meta property="og:description" content="A local guide to South Austin neighborhoods, homes, parks, patios and everyday places.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://southaustin.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #11110f;
-      --cream: #f4eddc;
-      --paper: #fffaf0;
-      --orange: #e85d2a;
-      --yellow: #f4c64f;
-      --teal: #2f7e79;
-      --sage: #8ca17c;
-      --line: rgba(17, 17, 15, 0.18);
-      --shadow: 8px 8px 0 var(--ink);
-      --radius: 22px;
-      --max: 1180px;
+      --paper: #f3eee5;
+      --paper-2: #e8dfd1;
+      --ink: #1d211d;
+      --muted: #64685f;
+      --sage: #566753;
+      --sage-dark: #26362b;
+      --clay: #c35d3b;
+      --sun: #e7aa3e;
+      --line: rgba(29, 33, 29, .18);
+      --white: #fffdf8;
+      --serif: "Instrument Serif", Georgia, serif;
+      --sans: "Manrope", Arial, sans-serif;
+      --radius: 1.1rem;
+      --shadow: 0 24px 60px rgba(25, 30, 24, .12);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       color: var(--ink);
-      background:
-        radial-gradient(circle at 12% 8%, rgba(244, 198, 79, 0.22), transparent 26rem),
-        radial-gradient(circle at 88% 22%, rgba(47, 126, 121, 0.16), transparent 28rem),
-        var(--cream);
-      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--paper);
+      font-family: var(--sans);
       line-height: 1.55;
-      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.24;
-      z-index: 999;
-      background-image:
-        linear-gradient(rgba(17,17,15,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(17,17,15,.025) 1px, transparent 1px);
-      background-size: 24px 24px;
-      mix-blend-mode: multiply;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button,
-    input,
-    select,
-    textarea {
-      font: inherit;
-    }
-
-    img,
-    svg {
-      display: block;
-      max-width: 100%;
-    }
-
-    .container {
-      width: min(calc(100% - 36px), var(--max));
-      margin-inline: auto;
-    }
+    body.menu-open { overflow: hidden; }
+    img { display: block; width: 100%; }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    :focus-visible { outline: 3px solid var(--sun); outline-offset: 4px; }
 
     .skip-link {
       position: fixed;
-      top: 12px;
-      left: 12px;
-      z-index: 2000;
-      padding: 10px 14px;
+      left: 1rem;
+      top: -4rem;
+      z-index: 1000;
+      padding: .8rem 1rem;
       background: var(--ink);
       color: white;
-      transform: translateY(-160%);
-      transition: transform 0.2s ease;
+      border-radius: .5rem;
+      transition: top .2s ease;
     }
-
-    .skip-link:focus {
-      transform: translateY(0);
-    }
+    .skip-link:focus { top: 1rem; }
 
     .site-header {
-      position: sticky;
-      top: 0;
+      position: fixed;
+      inset: 0 0 auto 0;
       z-index: 100;
-      backdrop-filter: blur(14px);
-      background: rgba(244, 237, 220, 0.86);
-      border-bottom: 2px solid var(--ink);
-    }
-
-    .nav {
-      min-height: 76px;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      justify-content: space-between;
-      gap: 24px;
+      min-height: 78px;
+      padding: 0 clamp(1rem, 3vw, 3rem);
+      background: rgba(243, 238, 229, .9);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(15px);
     }
-
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      font-family: "Archivo Black", sans-serif;
-      font-size: clamp(1.05rem, 2vw, 1.45rem);
-      letter-spacing: -0.04em;
+      gap: .7rem;
+      text-decoration: none;
+      width: max-content;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .17em;
       text-transform: uppercase;
     }
-
     .brand-mark {
-      width: 42px;
+      width: 27px;
       aspect-ratio: 1;
-      border: 2px solid var(--ink);
-      border-radius: 50% 50% 44% 56% / 58% 45% 55% 42%;
-      background: var(--orange);
-      display: grid;
-      place-items: center;
-      transform: rotate(-5deg);
-      box-shadow: 3px 3px 0 var(--ink);
-    }
-
-    .brand-mark svg {
-      width: 24px;
-    }
-
-    .desktop-nav {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      font-weight: 700;
-      font-size: 0.94rem;
-    }
-
-    .desktop-nav a:not(.nav-cta) {
+      border: 1.5px solid currentColor;
+      border-radius: 50%;
       position: relative;
     }
-
-    .desktop-nav a:not(.nav-cta)::after {
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 7px;
+      left: 5px;
+      top: 9px;
+      border-top: 1.5px solid currentColor;
+      border-radius: 50%;
+      transform: rotate(-12deg);
+    }
+    .main-nav {
+      display: flex;
+      gap: clamp(1.1rem, 2.4vw, 2.4rem);
+      justify-content: center;
+    }
+    .main-nav a {
+      font-size: .82rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: .02em;
+      position: relative;
+    }
+    .main-nav a::after {
       content: "";
       position: absolute;
       left: 0;
-      bottom: -4px;
-      width: 100%;
-      height: 2px;
-      background: var(--orange);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.2s ease;
+      right: 100%;
+      bottom: -.38rem;
+      height: 1px;
+      background: currentColor;
+      transition: right .25s ease;
     }
-
-    .desktop-nav a:hover::after,
-    .desktop-nav a:focus-visible::after {
-      transform: scaleX(1);
+    .main-nav a:hover::after { right: 0; }
+    .header-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: .55rem;
     }
-
-    .nav-cta,
-    .btn {
+    .action-link {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      min-height: 50px;
-      padding: 12px 18px;
-      border: 2px solid var(--ink);
+      min-height: 44px;
+      padding: .68rem 1rem;
+      border: 1px solid var(--ink);
       border-radius: 999px;
-      background: var(--yellow);
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 4px 4px 0 var(--ink);
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-    }
-
-    .nav-cta:hover,
-    .btn:hover {
-      transform: translate(2px, 2px);
-      box-shadow: 2px 2px 0 var(--ink);
-    }
-
-    .btn-dark {
-      background: var(--ink);
-      color: var(--paper);
-    }
-
-    .btn-orange {
-      background: var(--orange);
-      color: var(--paper);
-    }
-
-    .btn-paper {
-      background: var(--paper);
-    }
-
-    .mobile-toggle {
-      display: none;
-      width: 48px;
-      height: 48px;
-      border: 2px solid var(--ink);
-      border-radius: 50%;
-      background: var(--paper);
-      box-shadow: 3px 3px 0 var(--ink);
-      cursor: pointer;
-    }
-
-    .mobile-menu {
-      display: none;
-      padding: 0 18px 18px;
-    }
-
-    .mobile-menu.is-open {
-      display: grid;
-      gap: 10px;
-    }
-
-    .mobile-menu a {
-      padding: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.35);
+      text-decoration: none;
+      font-size: .78rem;
       font-weight: 700;
+      white-space: nowrap;
+      transition: transform .2s ease, background .2s ease, color .2s ease;
     }
-
-    .hero {
-      position: relative;
-      padding: clamp(78px, 10vw, 132px) 0 64px;
-      overflow: hidden;
-    }
-
-    .hero::after {
-      content: "78745";
-      position: absolute;
-      right: -0.035em;
-      bottom: -0.18em;
-      z-index: -1;
-      color: transparent;
-      -webkit-text-stroke: 2px rgba(17, 17, 15, 0.08);
-      font-family: "Archivo Black", sans-serif;
-      font-size: min(34vw, 27rem);
-      line-height: 0.8;
-      transform: rotate(-4deg);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.18fr) minmax(290px, 0.82fr);
-      align-items: center;
-      gap: clamp(42px, 7vw, 92px);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      font-family: "Space Mono", monospace;
-      font-weight: 700;
-      font-size: 0.83rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
+    .action-link:hover { transform: translateY(-2px); }
+    .action-link.primary { background: var(--ink); color: var(--paper); }
+    .action-link.primary:hover { background: var(--sage-dark); }
+    .menu-toggle {
+      display: none;
       width: 46px;
-      height: 10px;
-      background:
-        linear-gradient(135deg, transparent 0 30%, var(--orange) 30% 70%, transparent 70%);
-      background-size: 13px 10px;
-    }
-
-    h1,
-    h2,
-    h3 {
-      margin-top: 0;
-      font-family: "Archivo Black", sans-serif;
-      line-height: 0.96;
-      letter-spacing: -0.055em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      max-width: 860px;
-      margin-bottom: 24px;
-      font-size: clamp(3.7rem, 9.2vw, 8.1rem);
-    }
-
-    .hero-highlight {
-      display: inline-block;
-      color: var(--orange);
-      transform: rotate(-1deg);
-      text-shadow: 4px 4px 0 var(--ink);
-      -webkit-text-stroke: 2px var(--ink);
-    }
-
-    .hero-copy {
-      max-width: 680px;
-      margin: 0 0 32px;
-      font-size: clamp(1.08rem, 2vw, 1.35rem);
-      font-weight: 600;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .hero-card-wrap {
-      position: relative;
-      min-height: 520px;
-      display: grid;
-      place-items: center;
-    }
-
-    .hero-card {
-      position: relative;
-      width: min(100%, 410px);
-      padding: 28px;
-      border: 3px solid var(--ink);
-      border-radius: 32px 32px 70px 32px;
-      background: var(--paper);
-      box-shadow: 14px 14px 0 var(--ink);
-      transform: rotate(2.4deg);
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      top: 16px;
-      right: 18px;
-      width: 72px;
-      height: 72px;
-      border: 3px solid var(--ink);
+      height: 46px;
+      padding: 0;
+      border: 1px solid var(--line);
       border-radius: 50%;
-      background: var(--yellow);
-      z-index: 0;
-    }
-
-    .hero-card > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-card-kicker {
-      font-family: "Space Mono", monospace;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 700;
-    }
-
-    .hero-card h2 {
-      margin: 30px 0 18px;
-      font-size: clamp(2.2rem, 4vw, 3.7rem);
-    }
-
-    .hero-card p {
-      margin: 0 0 22px;
-      font-size: 1.03rem;
-      font-weight: 600;
-    }
-
-    .card-stamp {
-      position: absolute;
-      left: -34px;
-      bottom: 28px;
-      width: 112px;
-      aspect-ratio: 1;
-      display: grid;
-      place-items: center;
-      border: 3px solid var(--ink);
-      border-radius: 50%;
-      background: var(--teal);
-      color: white;
-      font-family: "Space Mono", monospace;
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-align: center;
-      text-transform: uppercase;
-      transform: rotate(-14deg);
-      box-shadow: 5px 5px 0 var(--ink);
-    }
-
-    .scribble {
-      position: absolute;
-      right: -38px;
-      top: 44px;
-      width: 140px;
-      opacity: 0.95;
-      transform: rotate(8deg);
-    }
-
-    .ticker {
-      border-block: 3px solid var(--ink);
-      background: var(--orange);
-      color: var(--paper);
-      overflow: hidden;
-      transform: rotate(-0.45deg) scale(1.01);
-    }
-
-    .ticker-track {
-      display: flex;
-      width: max-content;
-      animation: ticker 28s linear infinite;
-      padding: 13px 0;
-      font-family: "Archivo Black", sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .ticker-track span {
-      padding-right: 34px;
-    }
-
-    @keyframes ticker {
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    section {
-      padding: clamp(74px, 10vw, 130px) 0;
-    }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: 1fr minmax(260px, 0.52fr);
-      gap: 36px;
-      align-items: end;
-      margin-bottom: 50px;
-    }
-
-    .section-head h2 {
-      max-width: 860px;
-      margin-bottom: 0;
-      font-size: clamp(2.8rem, 6.5vw, 6.4rem);
-    }
-
-    .section-head p {
-      margin: 0;
-      font-size: 1.08rem;
-      font-weight: 600;
-    }
-
-    .path-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .path-card {
-      min-height: 410px;
-      padding: 28px;
-      border: 3px solid var(--ink);
-      border-radius: var(--radius);
-      background: var(--paper);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: var(--shadow);
-      transition: transform 0.22s ease;
-    }
-
-    .path-card:nth-child(2) {
-      background: var(--yellow);
-      transform: rotate(-1.5deg);
-    }
-
-    .path-card:nth-child(3) {
-      background: var(--teal);
-      color: white;
-      transform: rotate(1.4deg);
-    }
-
-    .path-card:hover {
-      transform: translateY(-8px) rotate(0);
-    }
-
-    .path-number {
-      font-family: "Space Mono", monospace;
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-    }
-
-    .path-card h3 {
-      margin: 38px 0 18px;
-      font-size: clamp(2.1rem, 4vw, 3.7rem);
-    }
-
-    .path-card p {
-      margin: 0 0 26px;
-      font-weight: 600;
-    }
-
-    .text-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    .text-link::after {
-      content: "↗";
-      font-size: 1.3em;
-      transition: transform 0.2s ease;
-    }
-
-    .text-link:hover::after {
-      transform: translate(4px, -4px);
-    }
-
-    .fit-finder {
-      background: var(--ink);
-      color: var(--paper);
-    }
-
-    .fit-layout {
-      display: grid;
-      grid-template-columns: 0.75fr 1.25fr;
-      gap: clamp(32px, 7vw, 84px);
-      align-items: start;
-    }
-
-    .fit-layout h2 {
-      font-size: clamp(3rem, 6vw, 6.3rem);
-      color: var(--yellow);
-    }
-
-    .fit-layout .lead {
-      max-width: 470px;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
-    .fit-panel {
-      padding: clamp(24px, 4vw, 42px);
-      border: 3px solid var(--paper);
-      border-radius: 28px;
-      background: #1a1a17;
-      box-shadow: 11px 11px 0 var(--orange);
-    }
-
-    .fit-question {
-      margin-bottom: 24px;
-      font-family: "Space Mono", monospace;
-      font-size: 0.82rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .fit-options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .fit-option {
-      padding: 12px 16px;
-      border: 2px solid var(--paper);
-      border-radius: 999px;
-      color: var(--paper);
       background: transparent;
       cursor: pointer;
-      font-weight: 800;
-      transition: 0.2s ease;
     }
-
-    .fit-option:hover,
-    .fit-option.is-active {
-      background: var(--yellow);
-      color: var(--ink);
-      border-color: var(--yellow);
+    .menu-toggle span,
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      background: var(--ink);
+      margin: auto;
+      transition: transform .25s ease, opacity .25s ease;
     }
+    .menu-toggle span::before { transform: translateY(-6px); }
+    .menu-toggle span::after { transform: translateY(4.5px); }
+    .menu-toggle[aria-expanded="true"] span { background: transparent; }
+    .menu-toggle[aria-expanded="true"] span::before { transform: translateY(0) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span::after { transform: translateY(-1.5px) rotate(-45deg); }
 
-    .fit-result {
-      min-height: 190px;
-      margin-top: 30px;
-      padding: 24px;
-      border-radius: 18px;
-      background: var(--paper);
-      color: var(--ink);
+    main { overflow: clip; }
+    .hero {
+      min-height: 100vh;
+      padding-top: 78px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+      border-bottom: 1px solid var(--line);
     }
-
-    .fit-result-label {
-      margin-bottom: 10px;
-      font-family: "Space Mono", monospace;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--orange);
-    }
-
-    .fit-result h3 {
-      margin-bottom: 12px;
-      font-size: clamp(1.9rem, 4vw, 3rem);
-    }
-
-    .fit-result p {
-      margin: 0;
-      font-weight: 600;
-    }
-
-    .neighborhoods {
+    .hero-copy {
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: clamp(7rem, 13vh, 10rem) clamp(1.25rem, 5vw, 6.5rem) clamp(3rem, 7vw, 6rem);
+      isolation: isolate;
     }
-
-    .neighborhoods::before {
+    .hero-copy::before {
       content: "";
       position: absolute;
-      inset: 7% auto auto -7%;
-      width: 230px;
-      height: 230px;
-      border: 3px dashed rgba(17,17,15,.26);
+      z-index: -1;
+      width: clamp(240px, 33vw, 500px);
+      aspect-ratio: 1;
       border-radius: 50%;
+      background: var(--sun);
+      opacity: .85;
+      top: 13%;
+      right: -12%;
+    }
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 17% auto auto 9%;
+      width: 54%;
+      height: 30%;
+      background-image: repeating-radial-gradient(ellipse at 50% 50%, transparent 0 16px, rgba(29,33,29,.12) 17px 18px);
+      opacity: .45;
+      transform: rotate(-9deg);
+    }
+    .eyebrow {
+      margin: 0 0 1.3rem;
+      font-size: .73rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(5.2rem, 11vw, 11rem);
+      font-weight: 400;
+      line-height: .73;
+      letter-spacing: -.055em;
+      max-width: 7ch;
+    }
+    .hero h1 em {
+      display: block;
+      font-weight: 400;
+      margin-left: .46em;
+    }
+    .hero-intro {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: end;
+      margin-top: clamp(3rem, 7vh, 5.5rem);
+      max-width: 720px;
+    }
+    .hero-intro p {
+      margin: 0;
+      max-width: 520px;
+      font-size: clamp(1rem, 1.5vw, 1.22rem);
+    }
+    .scroll-cue {
+      width: 52px;
+      aspect-ratio: 1;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      font-size: 1.25rem;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .scroll-cue:hover { transform: translateY(4px); background: var(--white); }
+    .hero-image {
+      position: relative;
+      min-height: 720px;
+      overflow: hidden;
+      background: var(--sage-dark);
+    }
+    .hero-image img {
+      height: 100%;
+      object-fit: cover;
+      object-position: center 45%;
+      filter: saturate(.78) contrast(1.02);
+    }
+    .hero-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(16, 25, 18, .45), transparent 45%);
       pointer-events: none;
     }
-
-    .hood-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 18px;
-    }
-
-    .hood-card {
-      position: relative;
-      min-height: 280px;
-      padding: 24px;
-      border: 3px solid var(--ink);
-      border-radius: 22px;
-      background: var(--paper);
-      overflow: hidden;
-      box-shadow: 6px 6px 0 var(--ink);
-    }
-
-    .hood-card:nth-child(1),
-    .hood-card:nth-child(4) {
-      grid-column: span 7;
-    }
-
-    .hood-card:nth-child(2),
-    .hood-card:nth-child(3) {
-      grid-column: span 5;
-    }
-
-    .hood-card:nth-child(5),
-    .hood-card:nth-child(6) {
-      grid-column: span 6;
-    }
-
-    .hood-card:nth-child(2) {
-      background: var(--sage);
-    }
-
-    .hood-card:nth-child(3) {
-      background: var(--yellow);
-    }
-
-    .hood-card:nth-child(5) {
-      background: var(--orange);
-      color: var(--paper);
-    }
-
-    .hood-card:nth-child(6) {
-      background: var(--teal);
-      color: var(--paper);
-    }
-
-    .hood-card h3 {
-      max-width: 85%;
-      margin-bottom: 16px;
-      font-size: clamp(1.8rem, 3vw, 3rem);
-    }
-
-    .hood-card p {
-      max-width: 540px;
-      margin: 0;
-      font-weight: 650;
-    }
-
-    .hood-icon {
+    .photo-note {
       position: absolute;
-      right: 18px;
-      bottom: 12px;
-      width: clamp(80px, 12vw, 150px);
-      opacity: 0.14;
-      transform: rotate(-8deg);
+      z-index: 2;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      max-width: 220px;
+      padding: 1rem 1.15rem;
+      color: var(--white);
+      background: rgba(29, 33, 29, .8);
+      backdrop-filter: blur(8px);
+      border-radius: .8rem;
+      font-size: .78rem;
     }
+    .photo-note strong { display: block; margin-bottom: .15rem; }
 
-    .manifesto {
-      padding-block: 60px;
-      border-block: 3px solid var(--ink);
-      background: var(--yellow);
-      transform: rotate(0.35deg) scale(1.01);
+    .section {
+      padding: clamp(5rem, 9vw, 10rem) clamp(1.2rem, 5vw, 6.5rem);
     }
-
-    .manifesto p {
-      margin: 0;
-      font-family: "Archivo Black", sans-serif;
-      font-size: clamp(2.1rem, 5.2vw, 5.8rem);
-      line-height: 1;
-      letter-spacing: -0.05em;
-      text-transform: uppercase;
-      text-align: center;
-    }
-
-    .sell-section {
-      padding-bottom: 80px;
-    }
-
-    .sell-box {
-      position: relative;
-      overflow: hidden;
-      padding: clamp(34px, 7vw, 78px);
-      border: 3px solid var(--ink);
-      border-radius: 34px;
-      background: var(--orange);
-      color: var(--paper);
-      box-shadow: 14px 14px 0 var(--ink);
-    }
-
-    .sell-box::after {
-      content: "SOLD";
-      position: absolute;
-      right: -28px;
-      bottom: -32px;
-      font-family: "Archivo Black", sans-serif;
-      font-size: clamp(6rem, 16vw, 13rem);
-      line-height: .75;
-      color: transparent;
-      -webkit-text-stroke: 3px rgba(255,255,255,.18);
-      transform: rotate(-7deg);
-    }
-
-    .sell-box > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .sell-box h2 {
-      max-width: 860px;
-      margin-bottom: 20px;
-      font-size: clamp(3rem, 7vw, 6.8rem);
-    }
-
-    .sell-box p {
-      max-width: 720px;
-      margin: 0 0 30px;
-      font-size: 1.12rem;
-      font-weight: 650;
-    }
-
-    .contact-section {
-      padding-top: 70px;
-    }
-
-    .contact-grid {
+    .section-head {
       display: grid;
-      grid-template-columns: 0.82fr 1.18fr;
-      gap: clamp(34px, 7vw, 84px);
-      align-items: center;
+      grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+      gap: clamp(2rem, 7vw, 8rem);
+      align-items: end;
+      margin-bottom: clamp(3rem, 6vw, 5.5rem);
     }
-
-    .contact-copy h2 {
-      margin-bottom: 18px;
-      font-size: clamp(3.2rem, 7vw, 6.9rem);
-    }
-
-    .contact-copy p {
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
-    .contact-direct {
-      margin-top: 28px;
-      display: grid;
-      gap: 10px;
-      font-family: "Space Mono", monospace;
+    .section-kicker {
+      display: block;
+      margin-bottom: 1rem;
+      font-size: .7rem;
       font-weight: 700;
+      letter-spacing: .17em;
+      text-transform: uppercase;
     }
-
-    .contact-direct a {
-      width: fit-content;
-      border-bottom: 2px solid var(--orange);
+    .section-title {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 7vw, 7.3rem);
+      font-weight: 400;
+      line-height: .9;
+      letter-spacing: -.045em;
     }
+    .section-copy { margin: 0; max-width: 540px; font-size: 1rem; color: var(--muted); }
 
-    .contact-card {
-      padding: clamp(24px, 4vw, 42px);
-      border: 3px solid var(--ink);
-      border-radius: 28px;
-      background: var(--paper);
-      box-shadow: var(--shadow);
+    .intro-statement {
+      display: grid;
+      grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr);
+      gap: clamp(2rem, 8vw, 10rem);
+      align-items: start;
+      background: var(--white);
     }
+    .intro-statement .section-kicker { position: sticky; top: 110px; }
+    .intro-statement blockquote {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(3rem, 6vw, 6.7rem);
+      line-height: .95;
+      letter-spacing: -.04em;
+    }
+    .intro-statement blockquote em { color: var(--clay); }
+    .intro-detail {
+      grid-column: 2;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 1rem;
+    }
+    .intro-detail div { background: var(--white); padding: 1.5rem; }
+    .intro-detail strong { display: block; margin-bottom: .35rem; font-size: .9rem; }
+    .intro-detail span { color: var(--muted); font-size: .86rem; }
 
-    .form-grid {
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      margin: 0 0 2.3rem;
+    }
+    .filter-button {
+      border: 1px solid var(--line);
+      background: transparent;
+      border-radius: 999px;
+      padding: .72rem 1rem;
+      color: var(--ink);
+      font-size: .78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+    .filter-button:hover,
+    .filter-button.is-active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+    .neighborhood-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .neighborhood-card {
+      position: relative;
+      min-height: 400px;
+      padding: clamp(1.6rem, 3vw, 2.8rem);
+      background: var(--paper-2);
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      transition: transform .25s ease, box-shadow .25s ease, opacity .25s ease;
+      overflow: hidden;
+    }
+    .neighborhood-card:nth-child(4n + 2),
+    .neighborhood-card:nth-child(4n + 3) { background: #dfdfd0; }
+    .neighborhood-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .neighborhood-card[hidden] { display: none; }
+    .card-number {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--muted);
+    }
+    .card-title {
+      margin: clamp(3.5rem, 7vw, 6.5rem) 0 .6rem;
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5vw, 5.2rem);
+      font-weight: 400;
+      line-height: .9;
+      letter-spacing: -.04em;
+    }
+    .card-deck { margin: 0; max-width: 560px; color: var(--muted); font-size: .94rem; }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: 1.4rem;
+    }
+    .card-tag {
+      display: inline-block;
+      padding: .35rem .55rem;
+      border: 1px solid rgba(29,33,29,.2);
+      border-radius: 999px;
+      font-size: .67rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .card-toggle {
+      position: absolute;
+      top: 1.6rem;
+      right: 1.6rem;
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1.25rem;
+      transition: transform .25s ease, background .2s ease, color .2s ease;
+    }
+    .card-toggle:hover { background: var(--ink); color: var(--paper); }
+    .neighborhood-card.is-open .card-toggle { transform: rotate(45deg); }
+    .card-details {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .35s ease;
+    }
+    .neighborhood-card.is-open .card-details { grid-template-rows: 1fr; }
+    .card-details-inner { overflow: hidden; }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      border-top: 1px solid var(--line);
+      margin-top: 1.7rem;
+      padding-top: 1.4rem;
+    }
+    .detail-grid h4 { margin: 0 0 .4rem; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
+    .detail-grid p { margin: 0; color: var(--muted); font-size: .82rem; }
+
+    .life-section {
+      background: var(--sage-dark);
+      color: var(--white);
+    }
+    .life-section .section-copy { color: rgba(255,253,248,.7); }
+    .life-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    .life-card { margin: 0; }
+    .life-card:nth-child(2) { margin-top: 5rem; }
+    .life-image {
+      overflow: hidden;
+      border-radius: var(--radius);
+      aspect-ratio: .82;
+      background: #111;
+    }
+    .life-card:nth-child(2) .life-image { aspect-ratio: 1.05; }
+    .life-image img { height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+    .life-card:hover img { transform: scale(1.035); }
+    .life-card figcaption { padding-top: 1rem; }
+    .life-card h3 {
+      margin: 0 0 .45rem;
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3vw, 3.3rem);
+      font-weight: 400;
+      line-height: 1;
+    }
+    .life-card p { margin: 0; color: rgba(255,253,248,.68); font-size: .86rem; }
+
+    .homes-section { background: var(--clay); color: #1b1815; }
+    .homes-section .section-copy { color: rgba(27,24,21,.72); }
+    .home-types {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: 1px solid rgba(27,24,21,.25);
+      border-bottom: 1px solid rgba(27,24,21,.25);
+    }
+    .home-type {
+      padding: 2rem 1.5rem 2.4rem;
+      border-right: 1px solid rgba(27,24,21,.25);
+    }
+    .home-type:last-child { border-right: 0; }
+    .home-type span { font-family: var(--serif); font-size: 1.1rem; }
+    .home-type h3 { margin: 4rem 0 .6rem; font-family: var(--serif); font-size: 2.2rem; font-weight: 400; line-height: 1; }
+    .home-type p { margin: 0; font-size: .84rem; color: rgba(27,24,21,.72); }
+
+    .contact-panel {
+      position: relative;
+      background: var(--sun);
+      min-height: 640px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      isolation: isolate;
+    }
+    .contact-panel::before,
+    .contact-panel::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 42vw;
+      aspect-ratio: 1;
+      border: 1px solid rgba(29,33,29,.22);
+      border-radius: 50%;
+    }
+    .contact-panel::before { left: -15vw; top: -14vw; }
+    .contact-panel::after { right: -12vw; bottom: -20vw; width: 52vw; }
+    .contact-content { max-width: 900px; padding: 5rem 1.2rem; }
+    .contact-content h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(4.6rem, 10vw, 10rem);
+      font-weight: 400;
+      line-height: .8;
+      letter-spacing: -.055em;
+    }
+    .contact-content p { max-width: 620px; margin: 2rem auto 0; }
+    .contact-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: .8rem;
+      margin-top: 2rem;
+    }
+    .contact-actions .action-link { min-width: 155px; min-height: 52px; font-size: .9rem; }
+
+    .about-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: clamp(3rem, 8vw, 9rem);
+      align-items: center;
+      background: var(--white);
     }
-
-    .field {
+    .about-name {
+      position: relative;
+      padding: clamp(2rem, 5vw, 5rem);
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+      background: var(--paper-2);
+      border-radius: 50%;
+    }
+    .about-name::before {
+      content: "";
+      position: absolute;
+      inset: 9%;
+      border: 1px solid rgba(29,33,29,.25);
+      border-radius: 46% 54% 52% 48% / 48% 43% 57% 52%;
+      transform: rotate(12deg);
+    }
+    .about-name span { position: relative; z-index: 1; font-size: .7rem; text-transform: uppercase; letter-spacing: .16em; font-weight: 700; }
+    .about-name strong {
+      position: relative;
+      z-index: 1;
+      display: block;
+      font-family: var(--serif);
+      font-size: clamp(3rem, 6vw, 6.5rem);
+      font-weight: 400;
+      line-height: .8;
+      letter-spacing: -.04em;
+    }
+    .about-copy h2 { margin: 0 0 1.2rem; font-family: var(--serif); font-size: clamp(3.2rem, 6vw, 6rem); font-weight: 400; line-height: .9; }
+    .about-copy p { max-width: 590px; color: var(--muted); }
+    .about-meta {
       display: grid;
-      gap: 7px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 2rem;
     }
+    .about-meta div { padding: 1.15rem; background: var(--white); }
+    .about-meta small { display: block; color: var(--muted); margin-bottom: .25rem; }
+    .about-meta strong { font-size: .85rem; }
 
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    label {
-      font-family: "Space Mono", monospace;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    input,
-    select,
-    textarea {
-      width: 100%;
-      border: 2px solid var(--ink);
-      border-radius: 12px;
-      background: white;
-      color: var(--ink);
-      padding: 13px 14px;
-      outline: none;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      box-shadow: 0 0 0 4px rgba(232, 93, 42, 0.2);
-    }
-
-    textarea {
-      min-height: 116px;
-      resize: vertical;
-    }
-
-    .form-note {
-      margin: 14px 0 0;
-      font-size: 0.78rem;
-      color: rgba(17,17,15,.7);
-    }
-
-    .form-status {
-      margin-top: 12px;
-      min-height: 22px;
-      font-weight: 700;
-    }
-
-    footer {
-      padding: 42px 0 28px;
+    .site-footer {
+      padding: 3rem clamp(1.2rem, 5vw, 6.5rem) 7rem;
       background: var(--ink);
       color: var(--paper);
     }
-
     .footer-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding-bottom: 28px;
-      border-bottom: 1px solid rgba(255,255,255,.24);
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,.18);
     }
-
-    .footer-brand {
-      font-family: "Archivo Black", sans-serif;
-      font-size: clamp(1.8rem, 4vw, 3.7rem);
-      letter-spacing: -0.05em;
-      text-transform: uppercase;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      font-weight: 700;
-    }
-
+    .footer-title { margin: 0; font-family: var(--serif); font-size: clamp(3rem, 7vw, 6.5rem); font-weight: 400; line-height: .85; }
+    .footer-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem 1.2rem; align-content: end; }
+    .footer-links a { color: rgba(255,255,255,.8); text-decoration: none; font-size: .82rem; }
+    .footer-links a:hover { color: white; text-decoration: underline; }
     .footer-bottom {
       display: flex;
       justify-content: space-between;
-      gap: 22px;
-      padding-top: 22px;
-      color: rgba(255,255,255,.7);
-      font-size: 0.82rem;
+      gap: 2rem;
+      padding-top: 1.5rem;
+      font-size: .68rem;
+      color: rgba(255,255,255,.55);
+    }
+    .footer-bottom p { margin: 0; max-width: 720px; }
+
+    .mobile-actions { display: none; }
+
+    @media (max-width: 1050px) {
+      .site-header { grid-template-columns: 1fr auto; }
+      .main-nav { display: none; }
+      .header-actions { margin-left: auto; }
+      .hero { grid-template-columns: 1fr 42%; }
+      .hero h1 { font-size: clamp(5.5rem, 13vw, 9rem); }
+      .life-grid { grid-template-columns: 1fr 1fr; }
+      .life-card:nth-child(2) { margin-top: 0; }
+      .life-card:last-child { grid-column: 1 / -1; width: 60%; justify-self: center; }
+      .home-types { grid-template-columns: repeat(2, 1fr); }
+      .home-type:nth-child(2) { border-right: 0; }
+      .home-type:nth-child(-n+2) { border-bottom: 1px solid rgba(27,24,21,.25); }
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
+    @media (max-width: 760px) {
+      body { padding-bottom: 70px; }
+      .site-header { min-height: 66px; padding: 0 1rem; }
+      .header-actions { display: none; }
+      .menu-toggle { display: block; }
+      .main-nav {
+        display: flex;
+        position: fixed;
+        inset: 66px 0 0;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 0;
+        padding: 2rem 1.2rem;
+        background: var(--paper);
+        transform: translateX(100%);
+        transition: transform .3s ease;
+      }
+      .main-nav.is-open { transform: translateX(0); }
+      .main-nav a { padding: 1.2rem 0; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: 2.5rem; font-weight: 400; }
+      .main-nav a::after { display: none; }
+      .hero { display: flex; flex-direction: column; padding-top: 66px; }
+      .hero-copy { min-height: 72vh; padding: 7rem 1.2rem 3rem; }
+      .hero-copy::before { width: 270px; right: -90px; top: 15%; }
+      .hero h1 { font-size: clamp(5.4rem, 24vw, 8rem); }
+      .hero-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+      .scroll-cue { display: none; }
+      .hero-image { min-height: 65vh; }
+      .section { padding: 5.5rem 1.2rem; }
+      .section-head,
+      .intro-statement { grid-template-columns: 1fr; gap: 2rem; }
+      .intro-statement .section-kicker { position: static; }
+      .intro-detail { grid-column: 1; grid-template-columns: 1fr; }
+      .neighborhood-grid { grid-template-columns: 1fr; }
+      .neighborhood-card { min-height: 360px; }
+      .card-title { margin-top: 4rem; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .life-grid { grid-template-columns: 1fr; }
+      .life-card:last-child { grid-column: auto; width: 100%; }
+      .life-image,
+      .life-card:nth-child(2) .life-image { aspect-ratio: 1; }
+      .home-types { grid-template-columns: 1fr; }
+      .home-type { border-right: 0; border-bottom: 1px solid rgba(27,24,21,.25); }
+      .home-type:last-child { border-bottom: 0; }
+      .contact-panel { min-height: 550px; }
+      .about-section { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-links { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; }
+      .mobile-actions {
+        position: fixed;
+        z-index: 120;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: grid;
+        grid-template-columns: .8fr 1.2fr;
+        gap: 1px;
+        background: rgba(29,33,29,.28);
+        padding: .5rem;
+        backdrop-filter: blur(14px);
+      }
+      .mobile-actions .action-link { border-radius: .7rem; min-height: 52px; background: var(--paper); }
+      .mobile-actions .action-link.primary { background: var(--ink); color: var(--paper); }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.001ms !important;
-      }
-
-      .reveal {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    @media (max-width: 960px) {
-      .desktop-nav {
-        display: none;
-      }
-
-      .mobile-toggle {
-        display: grid;
-        place-items: center;
-      }
-
-      .hero-grid,
-      .fit-layout,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-card-wrap {
-        min-height: 440px;
-      }
-
-      .path-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .path-card {
-        min-height: 310px;
-      }
-
-      .section-head {
-        grid-template-columns: 1fr;
-        align-items: start;
-      }
-
-      .hood-card:nth-child(n) {
-        grid-column: span 6;
-      }
-    }
-
-    @media (max-width: 680px) {
-      .container {
-        width: min(calc(100% - 24px), var(--max));
-      }
-
-      .site-header {
-        position: relative;
-      }
-
-      .hero {
-        padding-top: 58px;
-      }
-
-      h1 {
-        font-size: clamp(3.35rem, 18vw, 5.2rem);
-      }
-
-      .hero-highlight {
-        text-shadow: 3px 3px 0 var(--ink);
-      }
-
-      .hero-actions,
-      .hero-actions .btn {
-        width: 100%;
-      }
-
-      .hero-card {
-        width: calc(100% - 24px);
-        box-shadow: 9px 9px 0 var(--ink);
-      }
-
-      .card-stamp {
-        left: -12px;
-        bottom: -32px;
-      }
-
-      .scribble {
-        right: -4px;
-        top: -34px;
-        width: 110px;
-      }
-
-      .hood-card:nth-child(n) {
-        grid-column: 1 / -1;
-        min-height: 250px;
-      }
-
-      .manifesto {
-        padding-block: 46px;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .field.full {
-        grid-column: auto;
-      }
-
-      .footer-top,
-      .footer-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
     }
   </style>
 </head>
-
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="#top" aria-label="SouthAustin.com home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="none">
-            <path d="M6 23V13.5L16 5l10 8.5V23h-7v-7h-6v7H6Z" fill="#F4EDDC" stroke="#11110F" stroke-width="2.2" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        SouthAustin.com
-      </a>
+    <a class="brand" href="#top" aria-label="South Austin home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>South Austin</span>
+    </a>
 
-      <nav class="desktop-nav" aria-label="Main navigation">
-        <a href="#move">Make a Move</a>
-        <a href="#fit">Find Your Fit</a>
-        <a href="#neighborhoods">Neighborhoods</a>
-        <a href="#sell">Sell</a>
-        <a class="nav-cta" href="sms:+15129372696">Text Michael</a>
-      </nav>
+    <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
+      <a href="#neighborhoods">Neighborhoods</a>
+      <a href="#life">Local life</a>
+      <a href="#homes">Homes</a>
+      <a href="#about">About</a>
+    </nav>
 
-      <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">
-        <span aria-hidden="true">☰</span>
-      </button>
+    <div class="header-actions" aria-label="Contact Michael">
+      <a class="action-link" href="tel:+15129372696">Call</a>
+      <a class="action-link primary" href="sms:+15129372696?body=Hi%20Michael%20%E2%80%94%20I%E2%80%99m%20on%20SouthAustin.com%20and%20want%20to%20learn%20more%20about%20South%20Austin.">Text a Human</a>
     </div>
 
-    <nav class="mobile-menu" aria-label="Mobile navigation">
-      <a href="#move">Make a Move</a>
-      <a href="#fit">Find Your Fit</a>
-      <a href="#neighborhoods">Neighborhoods</a>
-      <a href="#sell">Sell</a>
-      <a href="sms:+15129372696">Text Michael</a>
-    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu"><span aria-hidden="true"></span></button>
   </header>
 
   <main id="main">
     <section class="hero" id="top">
-      <div class="container hero-grid">
-        <div class="reveal">
-          <div class="eyebrow">Local real estate. South of ordinary.</div>
-          <h1>
-            Find your place on the
-            <span class="hero-highlight">better side</span>
-            of Austin.
-          </h1>
-          <p class="hero-copy">
-            Homes with yards. Streets with shade. Patios with personality.
-            A little less polish. A lot more soul.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-orange" href="#contact">Find a South Austin Home <span aria-hidden="true">→</span></a>
-            <a class="btn btn-paper" href="#sell">Sell My Home <span aria-hidden="true">↗</span></a>
-          </div>
+      <div class="hero-copy">
+        <p class="eyebrow">A neighborhood guide for the south side</p>
+        <h1>South <em>Austin</em></h1>
+        <div class="hero-intro">
+          <p>Find the part that feels like yours. Explore the streets, homes, parks and everyday places that give South Austin its lived-in character.</p>
+          <a class="scroll-cue" href="#neighborhoods" aria-label="Explore neighborhoods">↓</a>
         </div>
+      </div>
+      <div class="hero-image">
+        <img src="assets/canopy.webp" alt="A tree-canopied residential street">
+        <div class="photo-note"><strong>Local guide. Real human.</strong>Browse freely. Call or text when a question comes up.</div>
+      </div>
+    </section>
 
-        <div class="hero-card-wrap reveal">
-          <svg class="scribble" viewBox="0 0 160 120" fill="none" aria-hidden="true">
-            <path d="M8 68c28-10 54-15 84-14m-10-25c16 8 35 24 48 41M54 90c26-2 56 4 82 18" stroke="#11110F" stroke-width="6" stroke-linecap="round"/>
-          </svg>
+    <section class="section intro-statement" aria-labelledby="intro-title">
+      <p class="section-kicker">The South Austin difference</p>
+      <blockquote id="intro-title">Not one neighborhood. Not one personality. <em>Definitely not one-size-fits-all.</em></blockquote>
+      <div class="intro-detail">
+        <div><strong>Established streets</strong><span>Ranch homes, mature trees and neighborhoods that have had time to grow into themselves.</span></div>
+        <div><strong>Everyday convenience</strong><span>Parks, grocery stores, local food and major routes are woven into daily life.</span></div>
+        <div><strong>Room for contrast</strong><span>Original homes, thoughtful remodels and newer infill often share the same few blocks.</span></div>
+        <div><strong>Close without feeling downtown</strong><span>Stay connected to central Austin while coming home to a more residential pace.</span></div>
+      </div>
+    </section>
 
-          <article class="hero-card">
-            <div class="hero-card-kicker">Not sure where to start?</div>
-            <h2>Tell me how you want to live.</h2>
-            <p>
-              I’ll help you narrow the neighborhoods, homes, and tradeoffs
-              without turning your search into a full-time job.
-            </p>
-            <a class="btn btn-dark" href="#fit">Find My South Austin Fit</a>
-            <div class="card-stamp">No pressure<br />No nonsense</div>
-          </article>
+    <section class="section" id="neighborhoods" aria-labelledby="neighborhood-title">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Explore the neighborhoods</span>
+          <h2 class="section-title" id="neighborhood-title">Start with<br>the feel.</h2>
+        </div>
+        <p class="section-copy">You do not need to know every neighborhood name before you start. Filter by the qualities that matter, then open each card for a quick, practical read.</p>
+      </div>
+
+      <div class="filters" role="group" aria-label="Filter neighborhoods">
+        <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-button" type="button" data-filter="close-in" aria-pressed="false">Close-in</button>
+        <button class="filter-button" type="button" data-filter="big-trees" aria-pressed="false">Big trees</button>
+        <button class="filter-button" type="button" data-filter="parks" aria-pressed="false">Park access</button>
+        <button class="filter-button" type="button" data-filter="more-space" aria-pressed="false">More space</button>
+        <button class="filter-button" type="button" data-filter="newer" aria-pressed="false">Newer homes</button>
+      </div>
+
+      <div class="neighborhood-grid" aria-live="polite">
+        <article class="neighborhood-card" data-tags="big-trees parks established">
+          <span class="card-number">01</span>
+          <button class="card-toggle" type="button" aria-expanded="false" aria-label="Show details for Cherry Creek">+</button>
+          <h3 class="card-title">Cherry Creek</h3>
+          <p class="card-deck">Established South Austin streets, practical floor plans and quick access to everyday errands. Cherry Creek is broad enough to offer variety without losing its easygoing residential rhythm.</p>
+          <div class="card-tags"><span class="card-tag">Established</span><span class="card-tag">Mature trees</span><span class="card-tag">Neighborhood parks</span></div>
+          <div class="card-details"><div class="card-details-inner"><div class="detail-grid">
+            <div><h4>The feel</h4><p>Comfortable, familiar and unpretentious, with quiet interior streets away from the busier corridors.</p></div>
+            <div><h4>Homes</h4><p>Mostly detached homes, including classic ranch plans, later additions and a steady mix of remodels.</p></div>
+            <div><h4>Nearby</h4><p>Westgate, William Cannon, local shopping and Cherry Creek Neighborhood Park.</p></div>
+          </div></div></div>
+        </article>
+
+        <article class="neighborhood-card" data-tags="close-in parks established big-trees">
+          <span class="card-number">02</span>
+          <button class="card-toggle" type="button" aria-expanded="false" aria-label="Show details for Garrison Park">+</button>
+          <h3 class="card-title">Garrison Park</h3>
+          <p class="card-deck">A central South Austin pocket organized around a true neighborhood park. It keeps Menchaca Road's food and patios close while the residential streets remain noticeably calmer.</p>
+          <div class="card-tags"><span class="card-tag">Close-in</span><span class="card-tag">Park &amp; pool</span><span class="card-tag">Ranch homes</span></div>
+          <div class="card-details"><div class="card-details-inner"><div class="detail-grid">
+            <div><h4>The feel</h4><p>Active around the park, quieter a few blocks away and easy to settle into without much pretense.</p></div>
+            <div><h4>Homes</h4><p>Established single-story homes, updated originals and selective infill on compact city lots.</p></div>
+            <div><h4>Nearby</h4><p>Garrison District Park, Garrison Pool, a shared-use trail and Menchaca Road.</p></div>
+          </div></div></div>
+        </article>
+
+        <article class="neighborhood-card" data-tags="close-in established infill">
+          <span class="card-number">03</span>
+          <button class="card-toggle" type="button" aria-expanded="false" aria-label="Show details for South Manchaca">+</button>
+          <h3 class="card-title">South Manchaca</h3>
+          <p class="card-deck">Close to central Austin without feeling polished into sameness. Older cottages, ranch homes, duplexes and newer infill give the neighborhood a mixed, genuinely Austin texture.</p>
+          <div class="card-tags"><span class="card-tag">Close-in</span><span class="card-tag">Mixed housing</span><span class="card-tag">Local character</span></div>
+          <div class="card-details"><div class="card-details-inner"><div class="detail-grid">
+            <div><h4>The feel</h4><p>Residential, eclectic and connected, with a little more edge than the master-planned parts of town.</p></div>
+            <div><h4>Homes</h4><p>Original smaller homes, expanded floor plans, duplexes and modern infill in the same general area.</p></div>
+            <div><h4>Nearby</h4><p>South Lamar, Westgate, Stassney, Menchaca Road and quick routes toward downtown.</p></div>
+          </div></div></div>
+        </article>
+
+        <article class="neighborhood-card" data-tags="close-in big-trees established">
+          <span class="card-number">04</span>
+          <button class="card-toggle" type="button" aria-expanded="false" aria-label="Show details for Westgate">+</button>
+          <h3 class="card-title">Westgate</h3>
+          <p class="card-deck">Tree-lined streets and older South Austin homes near one of the area's most useful retail hubs. Westgate feels tucked away even when groceries, restaurants and major routes are close.</p>
+          <div class="card-tags"><span class="card-tag">Big trees</span><span class="card-tag">Close-in</span><span class="card-tag">Convenient</span></div>
+          <div class="card-details"><div class="card-details-inner"><div class="detail-grid">
+            <div><h4>The feel</h4><p>Quiet and established, with easy access to the parts of South Austin used in everyday life.</p></div>
+            <div><h4>Homes</h4><p>Mid-century and later ranch homes, renovated originals and occasional newer construction.</p></div>
+            <div><h4>Nearby</h4><p>Central Market Westgate, Sunset Valley retail, South Lamar and Ben White.</p></div>
+          </div></div></div>
+        </article>
+
+        <article class="neighborhood-card" data-tags="big-trees more-space established close-in">
+          <span class="card-number">05</span>
+          <button class="card-toggle" type="button" aria-expanded="false" aria-label="Show details for Western Trails">+</button>
+          <h3 class="card-title">Western Trails</h3>
+          <p class="card-deck">Classic South Austin ranch-home territory with broad canopies and lots that often feel more generous than newer subdivisions. The interior streets are calm; Westgate and Sunset Valley are close.</p>
+          <div class="card-tags"><span class="card-tag">Larger-feeling lots</span><span class="card-tag">Ranch homes</span><span class="card-tag">Big trees</span></div>
+          <div class="card-details"><div class="card-details-inner"><div class="detail-grid">
+            <div><h4>The feel</h4><p>Settled, shaded and residential, with the visual character many people picture when they think of older Austin.</p></div>
+            <div><h4>Homes</h4><p>Predominantly detached ranch-style homes, including originals, careful remodels and expanded plans.</p></div>
+            <div><h4>Nearby</h4><p>Westgate, Sunset Valley, Ben White and straightforward access toward central Austin.</p></div>
+          </div></div></div>
+        </article>
+
+        <article class="neighborhood-card" data-tags="big-trees parks established">
+          <span class="card-number">06</span>
+          <button class="card-toggle" type="button" aria-expanded="false" aria-label="Show details for Maple Run">+</button>
+          <h3 class="card-title">Maple Run</h3>
+          <p class="card-deck">A leafy southwest pocket with curving streets, cul-de-sacs and convenient access to one of South Austin's most useful district parks. It feels removed without being disconnected.</p>
+          <div class="card-tags"><span class="card-tag">Park access</span><span class="card-tag">Curving streets</span><span class="card-tag">Established</span></div>
+          <div class="card-details"><div class="card-details-inner"><div class="detail-grid">
+            <div><h4>The feel</h4><p>Relaxed and suburban in the best sense: less through-traffic, more shade and room for everyday routines.</p></div>
+            <div><h4>Homes</h4><p>Detached homes with a mix of single- and two-story plans, garages and established landscaping.</p></div>
+            <div><h4>Nearby</h4><p>Dick Nichols District Park, its pool and pickleball courts, plus Mopac and William Cannon.</p></div>
+          </div></div></div>
+        </article>
+
+        <article class="neighborhood-card" data-tags="close-in more-space big-trees parks">
+          <span class="card-number">07</span>
+          <button class="card-toggle" type="button" aria-expanded="false" aria-label="Show details for Sunset Valley">+</button>
+          <h3 class="card-title">Sunset Valley</h3>
+          <p class="card-deck">A small independent city surrounded by Austin, prized for green space, trail connections and homes that can offer more breathing room than many close-in neighborhoods.</p>
+          <div class="card-tags"><span class="card-tag">More space</span><span class="card-tag">Green space</span><span class="card-tag">Close-in</span></div>
+          <div class="card-details"><div class="card-details-inner"><div class="detail-grid">
+            <div><h4>The feel</h4><p>Low-key and spacious, with a distinctive identity despite being surrounded by the larger city.</p></div>
+            <div><h4>Homes</h4><p>A limited and varied supply, including older homes, larger lots and properties with uncommon privacy.</p></div>
+            <div><h4>Nearby</h4><p>Sunset Valley trails, Westgate shopping, Mopac and quick access to central South Austin.</p></div>
+          </div></div></div>
+        </article>
+
+        <article class="neighborhood-card" data-tags="newer parks">
+          <span class="card-number">08</span>
+          <button class="card-toggle" type="button" aria-expanded="false" aria-label="Show details for Olympic Heights">+</button>
+          <h3 class="card-title">Olympic Heights</h3>
+          <p class="card-deck">A newer-feeling neighborhood of winding streets, pocket parks and closely connected blocks near the expanding food-and-entertainment scene farther south on Menchaca Road.</p>
+          <div class="card-tags"><span class="card-tag">Newer homes</span><span class="card-tag">Pocket parks</span><span class="card-tag">South Menchaca</span></div>
+          <div class="card-details"><div class="card-details-inner"><div class="detail-grid">
+            <div><h4>The feel</h4><p>Friendly, organized and active, with sidewalks and small green spaces built into the neighborhood pattern.</p></div>
+            <div><h4>Homes</h4><p>Mostly two-story detached homes with compact yards, garages and more contemporary floor plans.</p></div>
+            <div><h4>Nearby</h4><p>Menchaca Road venues, Slaughter Lane, Mary Moore Searight Metropolitan Park and daily retail.</p></div>
+          </div></div></div>
+        </article>
+
+        <article class="neighborhood-card" data-tags="close-in established">
+          <span class="card-number">09</span>
+          <button class="card-toggle" type="button" aria-expanded="false" aria-label="Show details for Battle Bend">+</button>
+          <h3 class="card-title">Battle Bend</h3>
+          <p class="card-deck">Compact, under-the-radar and well positioned near South Congress and Ben White. Battle Bend offers straightforward access in several directions without the name recognition premium of flashier areas.</p>
+          <div class="card-tags"><span class="card-tag">Under the radar</span><span class="card-tag">Close-in</span><span class="card-tag">Established</span></div>
+          <div class="card-details"><div class="card-details-inner"><div class="detail-grid">
+            <div><h4>The feel</h4><p>Modest and practical, with a residential core close to active commercial corridors.</p></div>
+            <div><h4>Homes</h4><p>Smaller detached homes, many with mid-century roots, plus remodels and gradual reinvestment.</p></div>
+            <div><h4>Nearby</h4><p>South Congress, Ben White, St. Elmo and convenient routes toward downtown or the airport.</p></div>
+          </div></div></div>
+        </article>
+
+        <article class="neighborhood-card" data-tags="more-space big-trees parks established">
+          <span class="card-number">10</span>
+          <button class="card-toggle" type="button" aria-expanded="false" aria-label="Show details for Shady Hollow">+</button>
+          <h3 class="card-title">Shady Hollow</h3>
+          <p class="card-deck">An established community south of Slaughter Lane with mature trees, greenbelt access and a more spacious suburban pace than the close-in pockets farther north.</p>
+          <div class="card-tags"><span class="card-tag">More space</span><span class="card-tag">Greenbelts</span><span class="card-tag">Mature trees</span></div>
+          <div class="card-details"><div class="card-details-inner"><div class="detail-grid">
+            <div><h4>The feel</h4><p>Quiet, shaded and settled, with neighborhood amenities and less of the close-in urban texture.</p></div>
+            <div><h4>Homes</h4><p>Detached homes on generally roomier lots, with a mix of one- and two-story plans.</p></div>
+            <div><h4>Nearby</h4><p>Slaughter Lane, greenbelt trails, Mary Moore Searight and the south Menchaca corridor.</p></div>
+          </div></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section life-section" id="life" aria-labelledby="life-title">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">The everyday rhythm</span>
+          <h2 class="section-title" id="life-title">Useful and<br>interesting.</h2>
+        </div>
+        <p class="section-copy">South Austin works because the things you need and the places you enjoy are often part of the same ordinary week.</p>
+      </div>
+      <div class="life-grid">
+        <figure class="life-card">
+          <div class="life-image"><img src="assets/foodtruck-day.webp" alt="A food truck vendor serving customers in Austin"></div>
+          <figcaption><h3>Daylight</h3><p>Coffee windows, taco trucks and independent spots make it easy to keep a normal errand from feeling completely generic.</p></figcaption>
+        </figure>
+        <figure class="life-card">
+          <div class="life-image"><img src="assets/austin-river.webp" alt="Austin skyline, river and green space viewed from above"></div>
+          <figcaption><h3>Outside</h3><p>Garrison, Dick Nichols and Mary Moore Searight bring pools, trails, courts and open space into the weekly routine.</p></figcaption>
+        </figure>
+        <figure class="life-card">
+          <div class="life-image"><img src="assets/foodtruck-night.webp" alt="Customers at an Austin food truck at night"></div>
+          <figcaption><h3>After dark</h3><p>Menchaca Road, South First and St. Elmo offer patios, food and low-key nights without requiring a downtown plan.</p></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section homes-section" id="homes" aria-labelledby="homes-title">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">The homes</span>
+          <h2 class="section-title" id="homes-title">Not one<br>housing type.</h2>
+        </div>
+        <p class="section-copy">South Austin's housing is layered. The right fit may be an untouched original, a careful remodel, newer construction or a lower-maintenance place close to everything.</p>
+      </div>
+      <div class="home-types">
+        <article class="home-type"><span>01</span><h3>Classic ranch</h3><p>Single-story plans, usable yards and established streets with decades of shade.</p></article>
+        <article class="home-type"><span>02</span><h3>Updated original</h3><p>Older bones with modern kitchens, opened living areas and improvements that preserve character.</p></article>
+        <article class="home-type"><span>03</span><h3>New infill</h3><p>Contemporary layouts and newer systems, often on compact lots within older neighborhoods.</p></article>
+        <article class="home-type"><span>04</span><h3>Lock-and-leave</h3><p>Condos, townhomes and smaller-lot communities for buyers prioritizing location over yard work.</p></article>
+      </div>
+    </section>
+
+    <section class="contact-panel" aria-labelledby="contact-title">
+      <div class="contact-content">
+        <span class="section-kicker">No form. No chatbot.</span>
+        <h2 id="contact-title">Ask a<br>human.</h2>
+        <p>Tell Michael what you are trying to figure out—neighborhood fit, current homes, commute tradeoffs or whether South Austin is right for you.</p>
+        <div class="contact-actions">
+          <a class="action-link" href="tel:+15129372696">Call</a>
+          <a class="action-link primary" href="sms:+15129372696?body=Hi%20Michael%20%E2%80%94%20I%E2%80%99m%20on%20SouthAustin.com%20and%20want%20to%20learn%20more%20about%20South%20Austin.">Text a Human</a>
         </div>
       </div>
     </section>
 
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker-track">
-        <span>Mature trees • neighborhood bars • good tacos • real backyards • less pretense • more personality •</span>
-        <span>Mature trees • neighborhood bars • good tacos • real backyards • less pretense • more personality •</span>
-      </div>
-    </div>
-
-    <section id="move">
-      <div class="container">
-        <header class="section-head reveal">
-          <h2>What are you here to do?</h2>
-          <p>
-            No maze of menus. No ten-step funnel. Pick your move and let’s get to the useful part.
-          </p>
-        </header>
-
-        <div class="path-grid">
-          <article class="path-card reveal">
-            <div>
-              <div class="path-number">01 / BUY</div>
-              <h3>Find a home that actually fits.</h3>
-              <p>
-                Get focused options based on how you live—not a giant automated list of everything with a roof.
-              </p>
-            </div>
-            <a class="text-link" href="#contact">Start my search</a>
-          </article>
-
-          <article class="path-card reveal">
-            <div>
-              <div class="path-number">02 / SELL</div>
-              <h3>Make your home stand out.</h3>
-              <p>
-                Position it properly, market it with personality, and give buyers a reason to remember it.
-              </p>
-            </div>
-            <a class="text-link" href="#sell">Talk selling strategy</a>
-          </article>
-
-          <article class="path-card reveal">
-            <div>
-              <div class="path-number">03 / INVEST</div>
-              <h3>Buy for more than appreciation.</h3>
-              <p>
-                Explore tenant-occupied homes, income-producing opportunities, and 1031 Exchange replacement properties.
-              </p>
-            </div>
-            <a class="text-link" href="#contact">Find an investment</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="fit-finder" id="fit">
-      <div class="container fit-layout">
-        <div class="reveal">
-          <div class="eyebrow">The South Austin fit finder</div>
-          <h2>Start with your life. Not a ZIP code.</h2>
-          <p class="lead">
-            Choose what matters most. I’ll point you toward the kinds of neighborhoods worth exploring.
-          </p>
-        </div>
-
-        <div class="fit-panel reveal">
-          <div class="fit-question">What sounds most like home?</div>
-
-          <div class="fit-options" role="group" aria-label="Choose a lifestyle priority">
-            <button class="fit-option" type="button" data-fit="trees">Big trees + established streets</button>
-            <button class="fit-option" type="button" data-fit="close">Close-in + connected</button>
-            <button class="fit-option" type="button" data-fit="value">More house for the money</button>
-            <button class="fit-option" type="button" data-fit="yard">A larger yard</button>
-            <button class="fit-option" type="button" data-fit="newer">Newer + low-maintenance</button>
-            <button class="fit-option" type="button" data-fit="quiet">Quiet + tucked away</button>
-          </div>
-
-          <div class="fit-result" aria-live="polite">
-            <div class="fit-result-label">Your starting point</div>
-            <h3>Pick what matters most.</h3>
-            <p>
-              There is no universally “best” neighborhood—only the one that fits your priorities, budget, and daily routine.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="neighborhoods" id="neighborhoods">
-      <div class="container">
-        <header class="section-head reveal">
-          <h2>The South Side shortlist.</h2>
-          <p>
-            A few of the places people keep coming back to—for very different reasons.
-          </p>
-        </header>
-
-        <div class="hood-grid">
-          <article class="hood-card reveal">
-            <h3>Western Trails</h3>
-            <p>
-              Distinctive mid-century homes, larger lots, mature trees, and the kind of neighborhood character that cannot be manufactured.
-            </p>
-            <svg class="hood-icon" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-              <path d="M50 8 63 36l29 2-22 19 7 28-27-15-27 15 7-28L8 38l29-2L50 8Z" fill="currentColor"/>
-            </svg>
-          </article>
-
-          <article class="hood-card reveal">
-            <h3>Cherry Creek</h3>
-            <p>
-              Established, practical, well-connected, and full of streets that feel comfortably lived in.
-            </p>
-            <svg class="hood-icon" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-              <circle cx="35" cy="60" r="24" fill="currentColor"/>
-              <circle cx="68" cy="60" r="24" fill="currentColor"/>
-              <path d="M48 43c4-19 11-28 27-34" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
-            </svg>
-          </article>
-
-          <article class="hood-card reveal">
-            <h3>Garrison Park</h3>
-            <p>
-              Relaxed, central, and easy to enjoy without needing the neighborhood to prove anything.
-            </p>
-            <svg class="hood-icon" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-              <path d="M18 78h64V44L50 18 18 44v34Z" fill="currentColor"/>
-            </svg>
-          </article>
-
-          <article class="hood-card reveal">
-            <h3>South Manchaca</h3>
-            <p>
-              Close-in energy, an eclectic housing mix, and quick access to the places people actually go.
-            </p>
-            <svg class="hood-icon" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-              <path d="M12 50h76M50 12v76M22 22l56 56M78 22 22 78" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
-            </svg>
-          </article>
-
-          <article class="hood-card reveal">
-            <h3>Maple Run</h3>
-            <p>
-              Approachable homes, neighborhood parks, and a comfortable community feel that works for everyday life.
-            </p>
-            <svg class="hood-icon" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-              <path d="M50 7 61 31l25-7-12 23 19 17-25 4-3 26-15-21-15 21-3-26-25-4 19-17-12-23 25 7L50 7Z" fill="currentColor"/>
-            </svg>
-          </article>
-
-          <article class="hood-card reveal">
-            <h3>Olympic Heights</h3>
-            <p>
-              Newer construction, community amenities, and a more turnkey path into the South Austin lifestyle.
-            </p>
-            <svg class="hood-icon" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-              <circle cx="28" cy="55" r="18" stroke="currentColor" stroke-width="8"/>
-              <circle cx="50" cy="55" r="18" stroke="currentColor" stroke-width="8"/>
-              <circle cx="72" cy="55" r="18" stroke="currentColor" stroke-width="8"/>
-            </svg>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <aside class="manifesto">
-      <div class="container">
-        <p>
-          You do not need all of Austin.<br />
-          You need the right part of it.
-        </p>
-      </div>
-    </aside>
-
-    <section class="sell-section" id="sell">
-      <div class="container">
-        <div class="sell-box reveal">
-          <div class="eyebrow">Thinking about selling?</div>
-          <h2>Do not let an algorithm price your story.</h2>
-          <p>
-            Your home is competing on condition, presentation, timing, location, and buyer perception.
-            Get a real strategy—not a robotic estimate and a barrage of follow-up emails.
-          </p>
-          <a class="btn btn-paper" href="#contact">Get a Real Home Value</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact-section" id="contact">
-      <div class="container contact-grid">
-        <div class="contact-copy reveal">
-          <div class="eyebrow">Let’s make a smart move</div>
-          <h2>Tell me what you’re looking for.</h2>
-          <p>
-            Buying, selling, investing, relocating, or just trying to figure out your next move—I’ll point you in the right direction.
-          </p>
-
-          <div class="contact-direct">
-            <a href="tel:+15129372696">Call (512) YES-2-OWN</a>
-            <a href="sms:+15129372696">Text Michael</a>
-            <a href="https://instagram.com/siliconhillsrealtor" target="_blank" rel="noopener">@siliconhillsrealtor</a>
-          </div>
-        </div>
-
-        <div class="contact-card reveal">
-          <form id="leadForm">
-            <div class="form-grid">
-              <div class="field">
-                <label for="name">Your name</label>
-                <input id="name" name="name" autocomplete="name" required />
-              </div>
-
-              <div class="field">
-                <label for="phone">Phone</label>
-                <input id="phone" name="phone" autocomplete="tel" inputmode="tel" required />
-              </div>
-
-              <div class="field full">
-                <label for="goal">What brings you here?</label>
-                <select id="goal" name="goal" required>
-                  <option value="">Choose one</option>
-                  <option>Buying a home</option>
-                  <option>Selling a home</option>
-                  <option>Relocating to South Austin</option>
-                  <option>Investing</option>
-                  <option>Just exploring</option>
-                </select>
-              </div>
-
-              <div class="field full">
-                <label for="message">What should I know?</label>
-                <textarea id="message" name="message" placeholder="Budget, timing, neighborhood, property address, or anything else helpful."></textarea>
-              </div>
-
-              <div class="field full">
-                <button class="btn btn-orange" type="submit">Text My Details to Michael</button>
-                <p class="form-note">
-                  Submitting opens your phone’s text app with a prewritten message. Nothing is stored on this page.
-                </p>
-                <div class="form-status" id="formStatus" aria-live="polite"></div>
-              </div>
-            </div>
-          </form>
+    <section class="section about-section" id="about" aria-labelledby="about-title">
+      <div class="about-name" aria-hidden="true"><span>Your local point of contact</span><strong>Michael<br>Mechler</strong></div>
+      <div class="about-copy">
+        <span class="section-kicker">About Michael</span>
+        <h2 id="about-title">Local context beats another search box.</h2>
+        <p>Michael Mechler has worked in Austin real estate since 2013. He helps buyers compare neighborhoods by the way they actually want to live—not just by beds, baths and a pin on a map.</p>
+        <p>SouthAustin.com is designed to be useful before you are ready to talk. When a question comes up, the call and text buttons connect directly to Michael.</p>
+        <div class="about-meta">
+          <div><small>Role</small><strong>Broker Associate</strong></div>
+          <div><small>Brokerage</small><strong>Douglas Elliman Real Estate</strong></div>
+          <div><small>Direct</small><strong>(512) YES-2-OWN</strong></div>
+          <div><small>Instagram</small><strong>@siliconhillsrealtor</strong></div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">SouthAustin.com</div>
-        <nav class="footer-links" aria-label="Footer navigation">
-          <a href="#move">Buy</a>
-          <a href="#sell">Sell</a>
-          <a href="#neighborhoods">Neighborhoods</a>
-          <a href="tel:+15129372696">Call</a>
-          <a href="sms:+15129372696">Text</a>
-        </nav>
+  <footer class="site-footer">
+    <div class="footer-top">
+      <h2 class="footer-title">Find your<br>South Austin.</h2>
+      <div class="footer-links">
+        <a href="tel:+15129372696">Call (512) YES-2-OWN</a>
+        <a href="sms:+15129372696?body=Hi%20Michael%20%E2%80%94%20I%E2%80%99m%20on%20SouthAustin.com%20and%20want%20to%20learn%20more%20about%20South%20Austin.">Text a Human</a>
+        <a href="https://www.instagram.com/siliconhillsrealtor/" target="_blank" rel="noopener">Instagram</a>
+        <a href="#neighborhoods">Neighborhoods</a>
+        <!-- Replace the following IABS href with Michael's completed IABS PDF before publishing. -->
+        <a href="https://www.trec.texas.gov/forms/information-about-brokerage-services" target="_blank" rel="noopener">Texas Real Estate Commission Information About Brokerage Services</a>
+        <a href="https://www.trec.texas.gov/forms/consumer-protection-notice" target="_blank" rel="noopener">Texas Real Estate Commission Consumer Protection Notice</a>
       </div>
-
-      <div class="footer-bottom">
-        <span>© <span id="year"></span> Michael Mechler. All rights reserved.</span>
-        <span>Broker Associate · Douglas Elliman Real Estate · Equal Housing Opportunity</span>
-      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Michael Mechler, Broker Associate · Douglas Elliman Real Estate · Equal Housing Opportunity. Neighborhood descriptions are general and should not replace independent research into a buyer's specific priorities.</p>
+      <p>Photography via Pexels: Hector Portillo, Drone Task Force and Sergej.</p>
     </div>
   </footer>
 
+  <div class="mobile-actions" aria-label="Contact Michael">
+    <a class="action-link" href="tel:+15129372696">Call</a>
+    <a class="action-link primary" href="sms:+15129372696?body=Hi%20Michael%20%E2%80%94%20I%E2%80%99m%20on%20SouthAustin.com%20and%20want%20to%20learn%20more%20about%20South%20Austin.">Text a Human</a>
+  </div>
+
   <script>
-    const mobileToggle = document.querySelector(".mobile-toggle");
-    const mobileMenu = document.querySelector(".mobile-menu");
+    const menuButton = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.main-nav');
 
-    mobileToggle.addEventListener("click", () => {
-      const isOpen = mobileMenu.classList.toggle("is-open");
-      mobileToggle.setAttribute("aria-expanded", String(isOpen));
-      mobileToggle.querySelector("span").textContent = isOpen ? "×" : "☰";
+    menuButton.addEventListener('click', () => {
+      const open = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!open));
+      menuButton.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+      nav.classList.toggle('is-open', !open);
+      document.body.classList.toggle('menu-open', !open);
     });
 
-    mobileMenu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileMenu.classList.remove("is-open");
-        mobileToggle.setAttribute("aria-expanded", "false");
-        mobileToggle.querySelector("span").textContent = "☰";
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Open menu');
+        nav.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
       });
     });
 
-    const fitData = {
-      trees: {
-        title: "Start with Western Trails, Cherry Creek, and Garrison Park.",
-        copy: "Look for established streets, mature landscaping, and homes where character matters as much as finishes."
-      },
-      close: {
-        title: "Start with South Manchaca, Westgate, and Battle Bend.",
-        copy: "These are strong starting points when convenience, local favorites, and an easy connection to the rest of Austin matter most."
-      },
-      value: {
-        title: "Start with Maple Run, Cherry Creek, and Olympic Heights.",
-        copy: "The right choice will depend on whether you prefer established character, newer construction, or the strongest balance of price and location."
-      },
-      yard: {
-        title: "Start with Western Trails, Shady Hollow, and select Sunset Valley homes.",
-        copy: "Lot size varies street by street, so the search should focus on the property—not just the neighborhood name."
-      },
-      newer: {
-        title: "Start with Olympic Heights and newer southern pockets.",
-        copy: "Expect more modern floor plans and community amenities, with fewer immediate renovation projects."
-      },
-      quiet: {
-        title: "Start with Western Trails, Shady Hollow, and tucked-away Garrison Park streets.",
-        copy: "The best fit often comes down to the exact block, traffic pattern, lot position, and surrounding homes."
-      }
-    };
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const cards = document.querySelectorAll('.neighborhood-card');
 
-    const fitButtons = document.querySelectorAll(".fit-option");
-    const fitResult = document.querySelector(".fit-result");
-
-    fitButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        fitButtons.forEach((item) => item.classList.remove("is-active"));
-        button.classList.add("is-active");
-
-        const result = fitData[button.dataset.fit];
-        fitResult.innerHTML = `
-          <div class="fit-result-label">A smart place to start</div>
-          <h3>${result.title}</h3>
-          <p>${result.copy}</p>
-        `;
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+        filterButtons.forEach(item => {
+          const active = item === button;
+          item.classList.toggle('is-active', active);
+          item.setAttribute('aria-pressed', String(active));
+        });
+        cards.forEach(card => {
+          const matches = filter === 'all' || card.dataset.tags.split(' ').includes(filter);
+          card.hidden = !matches;
+        });
       });
     });
 
-    const revealItems = document.querySelectorAll(".reveal");
-
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.12 }
-      );
-
-      revealItems.forEach((item) => observer.observe(item));
-    } else {
-      revealItems.forEach((item) => item.classList.add("is-visible"));
-    }
-
-    const leadForm = document.getElementById("leadForm");
-    const formStatus = document.getElementById("formStatus");
-
-    leadForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      const formData = new FormData(leadForm);
-      const name = formData.get("name").trim();
-      const phone = formData.get("phone").trim();
-      const goal = formData.get("goal").trim();
-      const message = formData.get("message").trim();
-
-      if (!name || !phone || !goal) {
-        formStatus.textContent = "Please add your name, phone number, and what brings you here.";
-        return;
-      }
-
-      const text = [
-        `Hi Michael, this is ${name}.`,
-        `I found you through SouthAustin.com.`,
-        `I'm interested in: ${goal}.`,
-        `My phone number is ${phone}.`,
-        message ? `Details: ${message}` : ""
-      ].filter(Boolean).join("\n");
-
-      formStatus.textContent = "Opening your text app…";
-      window.location.href = `sms:+15129372696?&body=${encodeURIComponent(text)}`;
+    document.querySelectorAll('.card-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.neighborhood-card');
+        const open = card.classList.toggle('is-open');
+        button.setAttribute('aria-expanded', String(open));
+        button.setAttribute('aria-label', `${open ? 'Hide' : 'Show'} details for ${card.querySelector('.card-title').textContent}`);
+      });
     });
-
-    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
