@@ -575,22 +575,39 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: .45rem .9rem;
+      gap: .65rem 1rem;
       margin: 1.4rem 0 0;
       color: rgba(255,253,248,.7);
       font-size: .76rem;
     }
-    .local-guide-links span {
+    .local-guide-links > span {
       font-weight: 700;
       letter-spacing: .08em;
       text-transform: uppercase;
     }
-    .local-guide-links a {
-      color: var(--white);
-      text-underline-offset: .22em;
-      text-decoration-thickness: 1px;
+    .local-guide-logos {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
     }
-    .local-guide-links a:hover { color: var(--sun); }
+    .local-guide-logo-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      opacity: .82;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .local-guide-logo-link:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+    .local-guide-logo {
+      display: block;
+      width: auto;
+      height: 34px;
+      max-width: 125px;
+      object-fit: contain;
+    }
     .spotlight-poster {
       position: relative;
       isolation: isolate;
@@ -653,6 +670,9 @@
       font-size: clamp(2.5rem, 4vw, 4.8rem);
       line-height: .82;
       letter-spacing: -.04em;
+    }
+    .poster-bottomline {
+      margin-top: 2rem;
     }
 
     .homes-section { background: var(--clay); color: #1b1815; }
@@ -796,9 +816,12 @@
       justify-content: space-between;
       align-items: flex-end;
       gap: 2rem;
-      padding-top: 1.5rem;
+      margin-top: 1.5rem;
+      padding: 1.6rem;
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: .75rem;
       font-size: .68rem;
-      color: rgba(255,255,255,.6);
     }
     .footer-brand {
       display: flex;
@@ -809,9 +832,6 @@
     .footer-logo-link {
       display: inline-flex;
       width: min(255px, 100%);
-      padding: .65rem .8rem;
-      background: var(--paper);
-      border-radius: .5rem;
     }
     .footer-logo {
       width: 100%;
@@ -1176,11 +1196,17 @@
             <a class="action-link primary" href="https://leroyandlewisbbq.com/" target="_blank" rel="noopener">Visit LeRoy &amp; Lewis</a>
             <a class="action-link" href="https://www.google.com/maps/search/?api=1&amp;query=5621+Emerald+Forest+Dr+Austin+TX+78745" target="_blank" rel="noopener">Get Directions</a>
           </div>
-          <p class="local-guide-links">
+          <div class="local-guide-links">
             <span>Explore more Austin</span>
-            <a href="https://atxfood.com/" target="_blank" rel="noopener">ATXFood.com</a>
-            <a href="https://atxdrinks.com/" target="_blank" rel="noopener">ATXDrinks.com</a>
-          </p>
+            <div class="local-guide-logos">
+              <a class="local-guide-logo-link" href="https://atxfood.com/" target="_blank" rel="noopener" aria-label="Visit ATXFood.com">
+                <img class="local-guide-logo" src="assets/atx-food.png" alt="ATX Food">
+              </a>
+              <a class="local-guide-logo-link" href="https://atxdrinks.com/" target="_blank" rel="noopener" aria-label="Visit ATXDrinks.com">
+                <img class="local-guide-logo" src="assets/atx-drinks.png" alt="ATX Drinks">
+              </a>
+            </div>
+          </div>
         </div>
 
         <div class="spotlight-poster" aria-hidden="true">
