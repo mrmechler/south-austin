@@ -83,7 +83,7 @@
     }
     .brand-logo {
       display: block;
-      width: clamp(180px, 17vw, 245px);
+      width: clamp(145px, 13vw, 205px);
       height: auto;
       object-fit: contain;
     }
@@ -748,16 +748,7 @@
       background: var(--paper-2);
       border-radius: 50%;
     }
-    .about-name::before {
-      content: "";
-      position: absolute;
-      z-index: 2;
-      inset: 9%;
-      border: 1px solid rgba(255,253,248,.55);
-      border-radius: 46% 54% 52% 48% / 48% 43% 57% 52%;
-      transform: rotate(12deg);
-      pointer-events: none;
-    }
+    .about-name::before { content: none; }
     .about-portrait {
       width: 100%;
       height: 100%;
@@ -774,21 +765,25 @@
     .about-name-label {
       position: absolute;
       z-index: 3;
-      left: 10%;
-      bottom: 10%;
-      display: inline-block;
-      padding: .72rem .82rem .68rem;
+      left: 50%;
+      bottom: 7%;
+      transform: translateX(-50%);
+      width: max-content;
+      max-width: 82%;
+      padding: .62rem .9rem;
       color: var(--white);
-      background: rgba(17, 24, 19, .86);
-      border-left: 3px solid var(--sun);
+      background: rgba(17, 24, 19, .88);
+      border-bottom: 3px solid var(--sun);
       box-shadow: 0 8px 24px rgba(0, 0, 0, .22);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      font-size: clamp(.68rem, 1vw, .78rem);
+      font-size: clamp(.62rem, .9vw, .74rem);
       font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: .14em;
+      line-height: 1;
+      letter-spacing: .11em;
+      text-align: center;
       text-transform: uppercase;
+      white-space: nowrap;
       text-shadow: 0 1px 2px rgba(0, 0, 0, .45);
     }
     .about-copy h2 { margin: 0 0 1.2rem; font-family: var(--serif); font-size: clamp(3.2rem, 6vw, 6rem); font-weight: 400; line-height: .9; }
@@ -907,10 +902,10 @@
       .site-header {
         min-height: 54px;
         height: 54px;
-        padding: 0 .8rem 0 1rem;
+        padding: 0 .7rem 0 .35rem;
       }
       .brand {
-        width: 112px;
+        width: 118px;
         overflow: visible;
       }
       .brand-logo {
@@ -918,7 +913,7 @@
         max-width: none;
         height: auto;
         max-height: 42px;
-        transform: scale(1.62);
+        transform: translateX(-10px) scale(1.62);
         transform-origin: left center;
       }
       .header-actions { display: none; }
@@ -995,7 +990,13 @@
       .footer-brand { grid-column: auto; }
       .footer-bottom { flex-direction: column; align-items: flex-start; }
       .local-guide-links { align-items: flex-start; }
-      .about-name-label { left: 8%; bottom: 8%; font-size: .68rem; }
+      .about-name-label {
+        left: 50%;
+        bottom: 6%;
+        max-width: 88%;
+        font-size: .62rem;
+        letter-spacing: .09em;
+      }
       .mobile-actions {
         position: fixed;
         z-index: 120;
@@ -1322,7 +1323,7 @@
     <section class="section about-section" id="about" aria-labelledby="about-title">
       <div class="about-name">
         <img class="about-portrait" src="assets/michael-mechler.png" alt="Michael Mechler, Broker Associate">
-        <span class="about-name-label">Local point<br>of contact</span>
+        <span class="about-name-label">Local Point of Contact</span>
       </div>
       <div class="about-copy">
         <span class="section-kicker">About Michael</span>
