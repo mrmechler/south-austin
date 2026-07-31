@@ -83,7 +83,7 @@
     }
     .brand-logo {
       display: block;
-      width: clamp(145px, 14vw, 205px);
+      width: clamp(180px, 17vw, 245px);
       height: auto;
       object-fit: contain;
     }
@@ -909,10 +909,17 @@
         height: 54px;
         padding: 0 .8rem 0 1rem;
       }
+      .brand {
+        width: 112px;
+        overflow: visible;
+      }
       .brand-logo {
-        width: auto;
-        max-width: 150px;
-        max-height: 32px;
+        width: 185px;
+        max-width: none;
+        height: auto;
+        max-height: 42px;
+        transform: scale(1.62);
+        transform-origin: left center;
       }
       .header-actions { display: none; }
       .menu-toggle {
